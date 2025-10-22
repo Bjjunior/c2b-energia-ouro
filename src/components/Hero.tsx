@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import logoC2B from "@/assets/logo-c2b.png";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -39,6 +40,11 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="animate-fade-in-up">
+          <img 
+            src={logoC2B} 
+            alt="C2B Logo" 
+            className="h-32 md:h-40 mx-auto mb-8 drop-shadow-2xl" 
+          />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
             C2B
           </h1>
