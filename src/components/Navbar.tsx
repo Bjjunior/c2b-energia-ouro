@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import logoC2B from "@/assets/logo-c2b.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,10 +30,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-4">
+            <img src={logoC2B} alt="C2B Logo" className="h-12" />
             <div className="text-2xl font-bold">
-              <span className="text-gold">C2B</span>
-              <span className="text-white"> | </span>
+              <span className="text-white">C2B</span>
+              <span className="text-grey-light"> | </span>
               <span className="text-white text-lg">Inteligência em Energia</span>
             </div>
           </div>
