@@ -43,11 +43,8 @@ const Hero = () => {
           <img 
             src={logoC2B} 
             alt="C2B Logo" 
-            className="h-32 md:h-40 mx-auto mb-8 drop-shadow-2xl" 
+            className="h-40 md:h-48 mx-auto mb-8 drop-shadow-2xl" 
           />
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
-            C2B
-          </h1>
           <div className="h-1 w-32 bg-gold mx-auto mb-6"></div>
           <h2 className="text-3xl md:text-5xl font-light mb-8 text-white">
             Inteligência em Energia
