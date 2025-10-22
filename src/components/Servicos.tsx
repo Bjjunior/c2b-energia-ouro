@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Battery, Gauge, LineChart, Wrench } from "lucide-react";
+import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2 } from "lucide-react";
 
 const servicos = [
   {
@@ -21,6 +21,21 @@ const servicos = [
     icon: Wrench,
     title: "Projetos Elétricos",
     description: "Desenvolvimento de projetos completos de instalações elétricas industriais",
+  },
+  {
+    icon: RefreshCw,
+    title: "Retrofit",
+    description: "Modernização e atualização de sistemas elétricos existentes para maior eficiência",
+  },
+  {
+    icon: Settings,
+    title: "Manutenção",
+    description: "Manutenção preventiva e corretiva de instalações elétricas industriais",
+  },
+  {
+    icon: Building2,
+    title: "Novas Instalações",
+    description: "Instalações elétricas residenciais, prediais e industriais em baixa, média e alta tensão",
   },
 ];
 
@@ -71,7 +86,7 @@ const Servicos = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {servicos.map((servico, index) => {
             const Icon = servico.icon;
             return (
