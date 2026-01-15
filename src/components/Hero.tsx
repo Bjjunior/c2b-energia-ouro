@@ -49,9 +49,13 @@ const Hero = () => {
           <h2 className="text-3xl md:text-5xl font-light mb-8 text-white">
             Inteligência em Energia
           </h2>
-          <p className="text-xl md:text-2xl text-grey-light max-w-3xl mx-auto mb-12 leading-relaxed">
-            Soluções inovadoras em engenharia elétrica e gestão inteligente de energia 
-            para empresas que buscam eficiência e sustentabilidade
+          <p className="text-xl md:text-2xl text-grey-light max-w-3xl mx-auto mb-6 leading-relaxed">
+            Especialistas em <span className="text-gold font-semibold">energia solar</span>, 
+            <span className="text-gold font-semibold"> carregadores para veículos elétricos</span> e 
+            <span className="text-gold font-semibold"> automação inteligente</span>
+          </p>
+          <p className="text-lg text-grey-light/80 max-w-2xl mx-auto mb-12">
+            Soluções completas em engenharia elétrica para residências, empresas e indústrias
           </p>
           <Button
             onClick={scrollToNext}

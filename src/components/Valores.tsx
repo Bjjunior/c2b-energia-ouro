@@ -5,7 +5,7 @@ const valores = [
   {
     icon: Zap,
     title: "Inovação",
-    description: "Buscamos constantemente novas tecnologias e soluções para otimizar o consumo de energia",
+    description: "Pioneiros em energia solar, mobilidade elétrica e automação para um futuro sustentável",
   },
   {
     icon: Target,
@@ -15,12 +15,12 @@ const valores = [
   {
     icon: Shield,
     title: "Confiabilidade",
-    description: "Compromisso com a segurança e qualidade em todos os nossos serviços",
+    description: "Compromisso com a segurança e qualidade em todas as instalações",
   },
   {
     icon: Lightbulb,
     title: "Sustentabilidade",
-    description: "Soluções que respeitam o meio ambiente e promovem eficiência energética",
+    description: "Energia limpa e renovável para reduzir sua pegada de carbono e custos",
   },
 ];
 
