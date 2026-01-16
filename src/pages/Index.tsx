@@ -4,6 +4,7 @@ import Valores from "@/components/Valores";
 import Servicos from "@/components/Servicos";
 import Contato from "@/components/Contato";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <Servicos />
       <Contato />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

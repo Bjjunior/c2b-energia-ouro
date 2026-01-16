@@ -51,7 +51,7 @@ const Contato = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-1">Email</h4>
-                    <p className="text-grey-light">contato@c2benergia.com.br</p>
+                    <p className="text-grey-light">contato@c2bengenharia.com</p>
                   </div>
                 </div>
 
@@ -61,7 +61,7 @@ const Contato = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-1">Telefone</h4>
-                    <p className="text-grey-light">+55 (XX) XXXXX-XXXX</p>
+                    <p className="text-grey-light">+55 (11) 5196-1096</p>
                   </div>
                 </div>
 
@@ -140,7 +140,7 @@ const Contato = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-gold hover:bg-gold/90 text-black font-semibold text-lg py-6 shadow-gold"
+                className="w-full bg-gold hover:bg-gold/90 text-white font-semibold text-lg py-6 shadow-gold"
               >
                 Enviar Mensagem
               </Button>
