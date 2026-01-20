@@ -27,7 +27,7 @@ const Valores = () => {
   return (
     <section
       id="valores"
-      className="py-24 md:py-32 bg-white"
+      className="py-24 md:py-32 bg-gray-100"
     >
       <div className="container mx-auto px-6">
         {/* Header */}
