@@ -1,22 +1,24 @@
-import { useEffect, useState, useRef } from "react";
-import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun, Car, Cpu } from "lucide-react";
+import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun, Car, Cpu, ArrowRight } from "lucide-react";
 
 // Serviços em destaque (especialidades principais)
 const servicosDestaque = [
   {
     icon: Sun,
     title: "Energia Solar",
-    description: "Projetos completos de sistemas fotovoltaicos para residências, empresas e indústrias. Reduza até 95% da sua conta de energia.",
+    description: "Projetos completos de sistemas fotovoltaicos para residências, empresas e indústrias. Reduza até 95% da sua conta de energia com tecnologia de ponta e retorno garantido do investimento.",
+    features: ["Projeto personalizado", "Instalação certificada", "Monitoramento 24/7", "Garantia estendida"],
   },
   {
     icon: Car,
-    title: "Carregadores Elétricos",
-    description: "Instalação de estações de carregamento para veículos elétricos. Soluções residenciais, comerciais e corporativas.",
+    title: "Carregadores para Veículos Elétricos",
+    description: "Instalação de estações de carregamento para veículos elétricos. Soluções completas para residências, condomínios, empresas e estacionamentos comerciais.",
+    features: ["Carregadores rápidos", "Gestão de energia", "Múltiplos pontos", "App de controle"],
   },
   {
     icon: Cpu,
-    title: "Automação",
-    description: "Sistemas inteligentes de automação residencial, predial e industrial. Controle total de iluminação, climatização e energia.",
+    title: "Automação Inteligente",
+    description: "Sistemas de automação residencial, predial e industrial. Controle total de iluminação, climatização, segurança e consumo de energia.",
+    features: ["Integração total", "Controle remoto", "Eficiência energética", "Escalabilidade"],
   },
 ];
 
@@ -25,12 +27,12 @@ const servicos = [
   {
     icon: Battery,
     title: "Eficiência Energética",
-    description: "Análise e otimização do consumo de energia para redução de custos operacionais",
+    description: "Análise e otimização do consumo para redução de custos operacionais",
   },
   {
     icon: Gauge,
     title: "Gestão de Demanda",
-    description: "Monitoramento e controle inteligente de demanda elétrica em tempo real",
+    description: "Monitoramento e controle inteligente de demanda em tempo real",
   },
   {
     icon: LineChart,
@@ -40,105 +42,90 @@ const servicos = [
   {
     icon: Wrench,
     title: "Projetos Elétricos",
-    description: "Desenvolvimento de projetos completos de instalações elétricas industriais",
+    description: "Desenvolvimento de projetos completos de instalações industriais",
   },
   {
     icon: RefreshCw,
     title: "Retrofit",
-    description: "Modernização e atualização de sistemas elétricos existentes para maior eficiência",
+    description: "Modernização de sistemas elétricos existentes",
   },
   {
     icon: Settings,
     title: "Manutenção",
-    description: "Manutenção preventiva e corretiva de instalações elétricas industriais",
+    description: "Manutenção preventiva e corretiva de instalações",
   },
   {
     icon: Building2,
     title: "Novas Instalações",
-    description: "Instalações elétricas residenciais, prediais e industriais em baixa, média e alta tensão",
+    description: "Instalações elétricas em baixa, média e alta tensão",
   },
 ];
 
 const Servicos = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [inView, setInView] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setInView(rect.top < window.innerHeight * 0.75);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <section
       id="servicos"
-      ref={sectionRef}
-      className="relative py-24 bg-black overflow-hidden"
+      className="py-24 md:py-32 bg-gray-50"
     >
-      {/* Parallax Background */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          transform: `translateY(${(scrollY - 1600) * 0.4}px)`,
-        }}
-      ></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className={`text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Nossos Serviços
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <p className="text-teal uppercase tracking-[0.2em] text-sm font-medium mb-4">
+            Soluções
+          </p>
+          <h2 className="text-3xl md:text-4xl font-light text-charcoal mb-6">
+            Nossos <span className="font-semibold">Serviços</span>
           </h2>
-          <div className="h-1 w-24 bg-gold mx-auto mb-6"></div>
-          <p className="text-xl text-grey-light max-w-2xl mx-auto">
+          <div className="w-12 h-[2px] bg-teal mx-auto mb-6" />
+          <p className="text-gray-500 max-w-2xl mx-auto">
             Especialistas em energia solar, mobilidade elétrica e automação inteligente
           </p>
         </div>
 
-        {/* Serviços em Destaque */}
-        <div className="mb-16">
-          <h3 className={`text-2xl md:text-3xl font-semibold text-gold text-center mb-10 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            ⚡ Nossas Especialidades
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Featured Services - Sophisticated List */}
+        <div className="max-w-5xl mx-auto mb-24">
+          <div className="space-y-6">
             {servicosDestaque.map((servico, index) => {
               const Icon = servico.icon;
               return (
                 <div
                   key={index}
-                  className={`group relative bg-gradient-to-br from-gold/20 to-gold/5 backdrop-blur-sm p-10 rounded-2xl 
-                    border-2 border-gold shadow-gold
-                    transition-all duration-500 overflow-hidden hover:scale-105
-                    ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
+                  className="group bg-white border border-gray-100 rounded p-8 md:p-10 shadow-subtle hover:shadow-card transition-all duration-300"
                 >
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-gold opacity-10 group-hover:opacity-20 transition-opacity duration-500"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="mb-6">
-                      <div className="w-24 h-24 bg-gold/20 rounded-full flex items-center justify-center 
-                        group-hover:bg-gold/30 group-hover:scale-110 transition-all duration-300 mx-auto">
-                        <Icon className="w-12 h-12 text-gold" />
+                  <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
+                    {/* Icon */}
+                    <div className="flex-shrink-0">
+                      <div className="w-16 h-16 bg-teal/10 rounded flex items-center justify-center group-hover:bg-teal group-hover:scale-105 transition-all duration-300">
+                        <Icon className="w-8 h-8 text-teal group-hover:text-white transition-colors duration-300" />
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gold text-center">
-                      {servico.title}
-                    </h3>
-                    <p className="text-white text-lg leading-relaxed text-center">
-                      {servico.description}
-                    </p>
+                    
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="text-xl md:text-2xl font-semibold text-charcoal mb-3 group-hover:text-teal transition-colors">
+                        {servico.title}
+                      </h3>
+                      <p className="text-gray-500 leading-relaxed mb-6">
+                        {servico.description}
+                      </p>
+                      
+                      {/* Features */}
+                      <div className="flex flex-wrap gap-3">
+                        {servico.features.map((feature, idx) => (
+                          <span 
+                            key={idx}
+                            className="text-xs uppercase tracking-wider text-teal bg-teal/5 px-3 py-1.5 rounded"
+                          >
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="hidden md:flex items-center">
+                      <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-teal group-hover:translate-x-1 transition-all duration-300" />
+                    </div>
                   </div>
                 </div>
               );
@@ -146,38 +133,32 @@ const Servicos = () => {
           </div>
         </div>
 
-        {/* Outros Serviços */}
-        <div>
-          <h3 className={`text-xl md:text-2xl font-semibold text-grey-light text-center mb-10 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Other Services */}
+        <div className="max-w-6xl mx-auto">
+          <p className="text-center text-gray-400 uppercase tracking-[0.15em] text-xs font-medium mb-10">
             Também oferecemos
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          </p>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {servicos.map((servico, index) => {
               const Icon = servico.icon;
               return (
                 <div
                   key={index}
-                  className={`group relative bg-grey-dark/30 backdrop-blur-sm p-6 rounded-lg 
-                    border border-gold/20 hover:border-gold hover:shadow-gold
-                    transition-all duration-500 overflow-hidden
-                    ${inView ? 'opacity-100 translate-x-0' : `opacity-0 ${index % 2 === 0 ? '-translate-x-10' : 'translate-x-10'}`}`}
-                  style={{ transitionDelay: `${(index + 3) * 100}ms` }}
+                  className="group bg-white border border-gray-100 rounded p-5 hover:border-teal/30 transition-all duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-gold opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="mb-4">
-                      <div className="w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center 
-                        group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
-                        <Icon className="w-7 h-7 text-gold" />
-                      </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-gray-50 rounded flex items-center justify-center flex-shrink-0 group-hover:bg-teal/10 transition-colors">
+                      <Icon className="w-5 h-5 text-gray-400 group-hover:text-teal transition-colors" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-white">
-                      {servico.title}
-                    </h3>
-                    <p className="text-grey-light text-sm leading-relaxed">
-                      {servico.description}
-                    </p>
+                    <div>
+                      <h4 className="text-sm font-semibold text-charcoal mb-1">
+                        {servico.title}
+                      </h4>
+                      <p className="text-xs text-gray-400 leading-relaxed">
+                        {servico.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               );
