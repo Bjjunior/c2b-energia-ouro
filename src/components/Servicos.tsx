@@ -1,4 +1,4 @@
-import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun, Car, Cpu, ArrowRight } from "lucide-react";
+import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun, Car, Cpu, ArrowRight, Lightbulb } from "lucide-react";
 
 // Serviços em destaque (especialidades principais)
 const servicosDestaque = [
@@ -58,6 +58,11 @@ const servicos = [
     icon: Building2,
     title: "Novas Instalações",
     description: "Instalações elétricas em baixa, média e alta tensão",
+  },
+  {
+    icon: Lightbulb,
+    title: "Iluminação",
+    description: "Projetos de iluminação eficiente para ambientes corporativos e industriais",
   },
 ];
 
