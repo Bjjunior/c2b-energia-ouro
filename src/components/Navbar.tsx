@@ -34,7 +34,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-subtle"
+          ? "bg-white backdrop-blur-md border-b border-gray-200 shadow-md"
           : "bg-transparent"
       }`}
     >
@@ -47,7 +47,7 @@ const Navbar = () => {
               <span className={`text-lg font-semibold ${scrolled ? 'text-charcoal' : 'text-white'}`}>
                 C2B
               </span>
-              <span className={`text-sm ml-2 ${scrolled ? 'text-gray-400' : 'text-gray-400'}`}>
+              <span className={`text-sm ml-2 ${scrolled ? 'text-gray-500' : 'text-gray-300'}`}>
                 Inteligência em Energia
               </span>
             </div>
@@ -79,9 +79,9 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 ${scrolled ? 'text-charcoal' : 'text-white'}`}
+            className={`md:hidden p-2 ${scrolled ? 'text-gray-800' : 'text-white'}`}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={24} className="stroke-[2.5]" /> : <Menu size={24} className="stroke-[2.5]" />}
           </button>
         </div>
 
