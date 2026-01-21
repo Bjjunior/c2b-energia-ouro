@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Valores from "@/components/Valores";
 import Servicos from "@/components/Servicos";
+import Portfolio from "@/components/Portfolio";
+import VoceSabia from "@/components/VoceSabia";
 import Contato from "@/components/Contato";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -13,6 +15,8 @@ const Index = () => {
       <Hero />
       <Valores />
       <Servicos />
+      <Portfolio />
+      <VoceSabia />
       <Contato />
       <Footer />
       <WhatsAppButton />

@@ -10,6 +10,34 @@ const Hero = () => {
     }
   };
 
+  const scrollToService = (serviceId: string) => {
+    const element = document.getElementById(serviceId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const serviceHighlights = [
+    {
+      id: "energia-solar",
+      icon: Sun,
+      title: "Energia Solar",
+      description: "Sistemas fotovoltaicos de alta performance"
+    },
+    {
+      id: "carregadores-ev",
+      icon: Car,
+      title: "Carregadores EV",
+      description: "Infraestrutura para mobilidade elétrica"
+    },
+    {
+      id: "automacao",
+      icon: Cpu,
+      title: "Automação",
+      description: "Controle inteligente de sistemas"
+    }
+  ];
+
   return (
     <section
       id="inicio"
@@ -40,23 +68,22 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* Service Highlights */}
+          {/* Service Highlights - Now clickable */}
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16">
-            <div className="text-center p-6 border border-white/10 rounded bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-              <Sun className="w-8 h-8 text-teal mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">Energia Solar</h3>
-              <p className="text-gray-500 text-sm">Sistemas fotovoltaicos de alta performance</p>
-            </div>
-            <div className="text-center p-6 border border-white/10 rounded bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-              <Car className="w-8 h-8 text-teal mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">Carregadores EV</h3>
-              <p className="text-gray-500 text-sm">Infraestrutura para mobilidade elétrica</p>
-            </div>
-            <div className="text-center p-6 border border-white/10 rounded bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-              <Cpu className="w-8 h-8 text-teal mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">Automação</h3>
-              <p className="text-gray-500 text-sm">Controle inteligente de sistemas</p>
-            </div>
+            {serviceHighlights.map((service) => {
+              const Icon = service.icon;
+              return (
+                <button
+                  key={service.id}
+                  onClick={() => scrollToService(service.id)}
+                  className="text-center p-6 border border-white/10 rounded bg-white/[0.02] hover:bg-white/[0.06] hover:border-teal/30 hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+                >
+                  <Icon className="w-8 h-8 text-teal mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-lg font-medium text-white mb-2 group-hover:text-teal transition-colors">{service.title}</h3>
+                  <p className="text-gray-500 text-sm">{service.description}</p>
+                </button>
+              );
+            })}
           </div>
 
           {/* CTA */}
