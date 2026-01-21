@@ -41,26 +41,44 @@ const Valores = () => {
           <div className="w-12 h-[2px] bg-teal mx-auto" />
         </div>
 
-        {/* Values Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {/* Values Grid - Animated Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {valores.map((valor, index) => {
             const Icon = valor.icon;
             return (
               <div
                 key={index}
-                className="group text-center p-8"
+                className="group relative bg-white rounded-lg p-8 shadow-subtle hover:shadow-card hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="mb-6">
-                  <div className="w-16 h-16 border border-gray-200 rounded-full flex items-center justify-center mx-auto group-hover:border-teal group-hover:bg-teal/5 transition-all duration-300">
-                    <Icon className="w-7 h-7 text-gray-400 group-hover:text-teal transition-colors duration-300" />
+                {/* Hover gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-teal/5 to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal to-teal/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                
+                <div className="relative z-10 text-center">
+                  {/* Icon container with animation */}
+                  <div className="mb-6 inline-block">
+                    <div className="w-16 h-16 border border-gray-200 rounded-full flex items-center justify-center mx-auto group-hover:border-teal group-hover:bg-teal group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                      <Icon className="w-7 h-7 text-gray-400 group-hover:text-white transition-all duration-500" />
+                    </div>
                   </div>
+                  
+                  {/* Title with underline animation */}
+                  <h3 className="text-lg font-semibold text-charcoal mb-3 group-hover:text-teal transition-colors duration-300 relative inline-block">
+                    {valor.title}
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-600 transition-colors duration-300">
+                    {valor.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold text-charcoal mb-3">
-                  {valor.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {valor.description}
-                </p>
+                
+                {/* Corner decoration */}
+                <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-teal/5 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-500" />
               </div>
             );
           })}
