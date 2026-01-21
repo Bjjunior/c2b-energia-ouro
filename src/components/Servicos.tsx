@@ -3,10 +3,19 @@ import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun,
 import servicoSolar from "@/assets/servico-solar.jpg";
 import servicoEv from "@/assets/servico-ev.jpg";
 import servicoAutomacao from "@/assets/servico-automacao.jpg";
+import servicoEficiencia from "@/assets/servico-eficiencia.jpg";
+import servicoDemanda from "@/assets/servico-demanda.jpg";
+import servicoQualidade from "@/assets/servico-qualidade.jpg";
+import servicoProjetos from "@/assets/servico-projetos.jpg";
+import servicoRetrofit from "@/assets/servico-retrofit.jpg";
+import servicoManutencao from "@/assets/servico-manutencao.jpg";
+import servicoInstalacoes from "@/assets/servico-instalacoes.jpg";
+import servicoIluminacao from "@/assets/servico-iluminacao.jpg";
 
 // Serviços em destaque (especialidades principais)
 const servicosDestaque = [
   {
+    id: "energia-solar",
     icon: Sun,
     title: "Energia Solar",
     description: "Projetos completos de sistemas fotovoltaicos para residências, empresas e indústrias. Reduza até 95% da sua conta de energia com tecnologia de ponta e retorno garantido do investimento.",
@@ -24,6 +33,7 @@ const servicosDestaque = [
     }
   },
   {
+    id: "carregadores-ev",
     icon: Car,
     title: "Carregadores para Veículos Elétricos",
     description: "Instalação de estações de carregamento para veículos elétricos. Soluções completas para residências, condomínios, empresas e estacionamentos comerciais.",
@@ -41,6 +51,7 @@ const servicosDestaque = [
     }
   },
   {
+    id: "automacao",
     icon: Cpu,
     title: "Automação Inteligente",
     description: "Sistemas de automação residencial, predial e industrial. Controle total de iluminação, climatização, segurança e consumo de energia.",
@@ -59,55 +70,148 @@ const servicosDestaque = [
   },
 ];
 
-// Demais serviços
+// Demais serviços com informações detalhadas
 const servicos = [
   {
     icon: Battery,
     title: "Eficiência Energética",
     description: "Análise e otimização do consumo para redução de custos operacionais",
+    image: servicoEficiencia,
+    detailedInfo: {
+      title: "Consultoria em Eficiência Energética",
+      benefits: [
+        "Redução média de 25% nos custos de energia",
+        "Identificação de desperdícios ocultos",
+        "Plano de ação personalizado",
+        "Acompanhamento de resultados"
+      ],
+      description: "Realizamos diagnóstico energético completo, identificando oportunidades de economia e implementando soluções que otimizam o consumo sem comprometer a operação."
+    }
   },
   {
     icon: Gauge,
     title: "Gestão de Demanda",
     description: "Monitoramento e controle inteligente de demanda em tempo real",
+    image: servicoDemanda,
+    detailedInfo: {
+      title: "Sistema de Gestão de Demanda",
+      benefits: [
+        "Evita multas por ultrapassagem de demanda",
+        "Dashboard de monitoramento em tempo real",
+        "Alertas automáticos configuráveis",
+        "Relatórios gerenciais detalhados"
+      ],
+      description: "Implantamos sistemas de monitoramento que permitem controlar a demanda contratada, evitando penalidades e otimizando a contratação de energia."
+    }
   },
   {
     icon: LineChart,
     title: "Análise de Qualidade",
     description: "Avaliação detalhada da qualidade de energia e correção de problemas",
+    image: servicoQualidade,
+    detailedInfo: {
+      title: "Análise de Qualidade de Energia",
+      benefits: [
+        "Identificação de harmônicos e distorções",
+        "Proteção de equipamentos sensíveis",
+        "Conformidade com normas ANEEL",
+        "Laudos técnicos completos"
+      ],
+      description: "Utilizamos equipamentos de última geração para medir e analisar a qualidade da energia, identificando problemas que podem danificar equipamentos ou aumentar custos."
+    }
   },
   {
     icon: Wrench,
     title: "Projetos Elétricos",
     description: "Desenvolvimento de projetos completos de instalações industriais",
+    image: servicoProjetos,
+    detailedInfo: {
+      title: "Projetos Elétricos Industriais",
+      benefits: [
+        "Projetos conforme ABNT e NR-10",
+        "Dimensionamento otimizado",
+        "Memorial de cálculo completo",
+        "ART/RRT incluso"
+      ],
+      description: "Desenvolvemos projetos elétricos completos para indústrias, comércios e edificações, com foco em segurança, eficiência e conformidade normativa."
+    }
   },
   {
     icon: RefreshCw,
     title: "Retrofit",
     description: "Modernização de sistemas elétricos existentes",
+    image: servicoRetrofit,
+    detailedInfo: {
+      title: "Retrofit de Instalações Elétricas",
+      benefits: [
+        "Atualização tecnológica sem parar operação",
+        "Aumento de segurança e confiabilidade",
+        "Redução de custos de manutenção",
+        "Adequação às normas vigentes"
+      ],
+      description: "Modernizamos instalações elétricas existentes, substituindo componentes obsoletos por tecnologias atuais, sem necessidade de parada total das operações."
+    }
   },
   {
     icon: Settings,
     title: "Manutenção",
     description: "Manutenção preventiva e corretiva de instalações",
+    image: servicoManutencao,
+    detailedInfo: {
+      title: "Manutenção Elétrica Industrial",
+      benefits: [
+        "Planos preventivos personalizados",
+        "Atendimento emergencial 24/7",
+        "Equipe certificada NR-10",
+        "Redução de paradas não programadas"
+      ],
+      description: "Oferecemos contratos de manutenção preventiva e corretiva, garantindo a disponibilidade e confiabilidade das instalações elétricas."
+    }
   },
   {
     icon: Building2,
     title: "Novas Instalações",
     description: "Instalações elétricas em baixa, média e alta tensão",
+    image: servicoInstalacoes,
+    detailedInfo: {
+      title: "Instalações Elétricas BT/MT/AT",
+      benefits: [
+        "Execução turnkey completa",
+        "Comissionamento e startup",
+        "Testes e medições certificados",
+        "Documentação as-built"
+      ],
+      description: "Executamos instalações elétricas completas em baixa, média e alta tensão, desde o projeto até o comissionamento e entrega final."
+    }
   },
   {
     icon: Lightbulb,
     title: "Iluminação",
     description: "Projetos de iluminação eficiente para ambientes corporativos e industriais",
+    image: servicoIluminacao,
+    detailedInfo: {
+      title: "Projetos de Iluminação LED",
+      benefits: [
+        "Economia de até 70% em iluminação",
+        "Melhoria do ambiente de trabalho",
+        "Conformidade com NBR ISO/CIE",
+        "Payback em até 18 meses"
+      ],
+      description: "Desenvolvemos projetos luminotécnicos completos, com foco em eficiência energética e qualidade do ambiente, utilizando tecnologia LED de última geração."
+    }
   },
 ];
 
 const Servicos = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedSecondaryIndex, setExpandedSecondaryIndex] = useState<number | null>(null);
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  const toggleSecondaryExpand = (index: number) => {
+    setExpandedSecondaryIndex(expandedSecondaryIndex === index ? null : index);
   };
 
   return (
@@ -140,7 +244,8 @@ const Servicos = () => {
               return (
                 <div
                   key={index}
-                  className="group"
+                  id={servico.id}
+                  className="group scroll-mt-24"
                 >
                   {/* Main Card */}
                   <div
@@ -262,24 +367,89 @@ const Servicos = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {servicos.map((servico, index) => {
               const Icon = servico.icon;
+              const isExpanded = expandedSecondaryIndex === index;
+              
               return (
-                <div
-                  key={index}
-                  className="group bg-white border border-gray-100 rounded p-5 hover:border-teal/30 hover:shadow-card hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-gray-50 rounded flex items-center justify-center flex-shrink-0 group-hover:bg-teal/10 group-hover:scale-110 transition-all duration-300">
-                      <Icon className="w-5 h-5 text-gray-400 group-hover:text-teal transition-colors" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-charcoal mb-1 group-hover:text-teal transition-colors">
-                        {servico.title}
-                      </h4>
-                      <p className="text-xs text-gray-400 leading-relaxed">
-                        {servico.description}
-                      </p>
+                <div key={index} className="relative">
+                  <div
+                    onClick={() => toggleSecondaryExpand(index)}
+                    className={`group bg-white border rounded p-5 cursor-pointer transition-all duration-300 ${
+                      isExpanded 
+                        ? "border-teal shadow-lg" 
+                        : "border-gray-100 hover:border-teal/30 hover:shadow-card hover:-translate-y-1"
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`w-10 h-10 rounded flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                        isExpanded 
+                          ? "bg-teal scale-110" 
+                          : "bg-gray-50 group-hover:bg-teal/10 group-hover:scale-110"
+                      }`}>
+                        <Icon className={`w-5 h-5 transition-colors ${
+                          isExpanded ? "text-white" : "text-gray-400 group-hover:text-teal"
+                        }`} />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className={`text-sm font-semibold mb-1 transition-colors ${
+                          isExpanded ? "text-teal" : "text-charcoal group-hover:text-teal"
+                        }`}>
+                          {servico.title}
+                        </h4>
+                        <p className="text-xs text-gray-400 leading-relaxed">
+                          {servico.description}
+                        </p>
+                      </div>
+                      <ArrowRight className={`w-4 h-4 flex-shrink-0 transition-all duration-300 ${
+                        isExpanded 
+                          ? "text-teal rotate-90" 
+                          : "text-gray-300 group-hover:text-teal group-hover:translate-x-1"
+                      }`} />
                     </div>
                   </div>
+
+                  {/* Expanded Subcard */}
+                  {isExpanded && (
+                    <div className="absolute top-full left-0 right-0 z-20 mt-2 bg-white rounded-lg shadow-xl border border-teal/20 overflow-hidden animate-fade-in">
+                      {/* Image */}
+                      <div className="relative h-40 overflow-hidden">
+                        <img 
+                          src={servico.image} 
+                          alt={servico.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent" />
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedSecondaryIndex(null);
+                          }}
+                          className="absolute top-2 right-2 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                        <div className="absolute bottom-3 left-4 right-4">
+                          <h5 className="text-white font-semibold text-sm">
+                            {servico.detailedInfo.title}
+                          </h5>
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="p-4">
+                        <p className="text-xs text-gray-500 mb-3 leading-relaxed">
+                          {servico.detailedInfo.description}
+                        </p>
+                        <div className="space-y-1.5">
+                          {servico.detailedInfo.benefits.slice(0, 3).map((benefit, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
+                              <span className="w-1 h-1 bg-teal rounded-full flex-shrink-0" />
+                              {benefit}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
