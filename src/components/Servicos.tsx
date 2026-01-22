@@ -1,16 +1,79 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun, Car, Cpu, ArrowRight, Lightbulb, X } from "lucide-react";
-import servicoSolar from "@/assets/servico-solar.jpg";
-import servicoEv from "@/assets/servico-ev.jpg";
-import servicoAutomacao from "@/assets/servico-automacao.jpg";
-import servicoEficiencia from "@/assets/servico-eficiencia.jpg";
-import servicoDemanda from "@/assets/servico-demanda.jpg";
-import servicoQualidade from "@/assets/servico-qualidade.jpg";
-import servicoProjetos from "@/assets/servico-projetos.jpg";
-import servicoRetrofit from "@/assets/servico-retrofit.jpg";
-import servicoManutencao from "@/assets/servico-manutencao.jpg";
-import servicoInstalacoes from "@/assets/servico-instalacoes.jpg";
-import servicoIluminacao from "@/assets/servico-iluminacao.jpg";
+
+// Images for featured services slideshow (4 per service)
+const servicoSolarImages = [
+  "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
+  "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80",
+  "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=800&q=80",
+  "https://images.unsplash.com/photo-1559302504-64aae6ca6548?w=800&q=80",
+];
+
+const servicoEvImages = [
+  "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80",
+  "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&q=80",
+  "https://images.unsplash.com/photo-1647429724247-f7e8ba34fcec?w=800&q=80",
+  "https://images.unsplash.com/photo-1594535182308-8ffefbb661e1?w=800&q=80",
+];
+
+const servicoAutomacaoImages = [
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+  "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80",
+  "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+  "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+];
+
+// Secondary service images
+const secondaryServiceImages = {
+  eficiencia: [
+    "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=800&q=80",
+    "https://images.unsplash.com/photo-1581092921461-39b9d1905ab8?w=800&q=80",
+  ],
+  demanda: [
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=800&q=80",
+    "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80",
+  ],
+  qualidade: [
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80",
+    "https://images.unsplash.com/photo-1581092921461-39b9d1905ab8?w=800&q=80",
+    "https://images.unsplash.com/photo-1497436072909-f81a93a0cfee?w=800&q=80",
+  ],
+  projetos: [
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+  ],
+  retrofit: [
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80",
+    "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+  ],
+  manutencao: [
+    "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80",
+    "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80",
+  ],
+  instalacoes: [
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+  ],
+  iluminacao: [
+    "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+  ],
+};
 
 // Serviços em destaque (especialidades principais)
 const servicosDestaque = [
@@ -20,7 +83,7 @@ const servicosDestaque = [
     title: "Energia Solar",
     description: "Projetos completos de sistemas fotovoltaicos para residências, empresas e indústrias. Reduza até 95% da sua conta de energia com tecnologia de ponta e retorno garantido do investimento.",
     features: ["Projeto personalizado", "Instalação certificada", "Monitoramento 24/7", "Garantia estendida"],
-    image: servicoSolar,
+    images: servicoSolarImages,
     detailedInfo: {
       title: "Sistemas Fotovoltaicos Completos",
       benefits: [
@@ -38,7 +101,7 @@ const servicosDestaque = [
     title: "Carregadores para Veículos Elétricos",
     description: "Instalação de estações de carregamento para veículos elétricos. Soluções completas para residências, condomínios, empresas e estacionamentos comerciais.",
     features: ["Carregadores rápidos", "Gestão de energia", "Múltiplos pontos", "App de controle"],
-    image: servicoEv,
+    images: servicoEvImages,
     detailedInfo: {
       title: "Infraestrutura de Mobilidade Elétrica",
       benefits: [
@@ -56,7 +119,7 @@ const servicosDestaque = [
     title: "Automação Inteligente",
     description: "Sistemas de automação residencial, predial e industrial. Controle total de iluminação, climatização, segurança e consumo de energia.",
     features: ["Integração total", "Controle remoto", "Eficiência energética", "Escalabilidade"],
-    image: servicoAutomacao,
+    images: servicoAutomacaoImages,
     detailedInfo: {
       title: "Automação Residencial e Predial",
       benefits: [
@@ -76,7 +139,7 @@ const servicos = [
     icon: Battery,
     title: "Eficiência Energética",
     description: "Análise e otimização do consumo para redução de custos operacionais",
-    image: servicoEficiencia,
+    images: secondaryServiceImages.eficiencia,
     detailedInfo: {
       title: "Consultoria em Eficiência Energética",
       benefits: [
@@ -92,7 +155,7 @@ const servicos = [
     icon: Gauge,
     title: "Gestão de Demanda",
     description: "Monitoramento e controle inteligente de demanda em tempo real",
-    image: servicoDemanda,
+    images: secondaryServiceImages.demanda,
     detailedInfo: {
       title: "Sistema de Gestão de Demanda",
       benefits: [
@@ -108,7 +171,7 @@ const servicos = [
     icon: LineChart,
     title: "Análise de Qualidade",
     description: "Avaliação detalhada da qualidade de energia e correção de problemas",
-    image: servicoQualidade,
+    images: secondaryServiceImages.qualidade,
     detailedInfo: {
       title: "Análise de Qualidade de Energia",
       benefits: [
@@ -124,7 +187,7 @@ const servicos = [
     icon: Wrench,
     title: "Projetos Elétricos",
     description: "Desenvolvimento de projetos completos de instalações industriais",
-    image: servicoProjetos,
+    images: secondaryServiceImages.projetos,
     detailedInfo: {
       title: "Projetos Elétricos Industriais",
       benefits: [
@@ -140,7 +203,7 @@ const servicos = [
     icon: RefreshCw,
     title: "Retrofit",
     description: "Modernização de sistemas elétricos existentes",
-    image: servicoRetrofit,
+    images: secondaryServiceImages.retrofit,
     detailedInfo: {
       title: "Retrofit de Instalações Elétricas",
       benefits: [
@@ -156,7 +219,7 @@ const servicos = [
     icon: Settings,
     title: "Manutenção",
     description: "Manutenção preventiva e corretiva de instalações",
-    image: servicoManutencao,
+    images: secondaryServiceImages.manutencao,
     detailedInfo: {
       title: "Manutenção Elétrica Industrial",
       benefits: [
@@ -172,7 +235,7 @@ const servicos = [
     icon: Building2,
     title: "Novas Instalações",
     description: "Instalações elétricas em baixa, média e alta tensão",
-    image: servicoInstalacoes,
+    images: secondaryServiceImages.instalacoes,
     detailedInfo: {
       title: "Instalações Elétricas BT/MT/AT",
       benefits: [
@@ -188,7 +251,7 @@ const servicos = [
     icon: Lightbulb,
     title: "Iluminação",
     description: "Projetos de iluminação eficiente para ambientes corporativos e industriais",
-    image: servicoIluminacao,
+    images: secondaryServiceImages.iluminacao,
     detailedInfo: {
       title: "Projetos de Iluminação LED",
       benefits: [
@@ -202,17 +265,52 @@ const servicos = [
   },
 ];
 
+// Image slideshow component
+const ImageSlideshow = ({ images, isActive }: { images: string[]; isActive: boolean }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (!isActive) return;
+    
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+    
+    return () => clearInterval(interval);
+  }, [isActive, images.length]);
+
+  return (
+    <div className="relative h-64 md:h-80 overflow-hidden">
+      {images.map((img, index) => (
+        <img
+          key={index}
+          src={img}
+          alt=""
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+      
+      {/* Image indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+        {images.map((_, idx) => (
+          <div
+            key={idx}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              idx === currentImageIndex ? "bg-teal w-4" : "bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Servicos = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [expandedSecondaryIndex, setExpandedSecondaryIndex] = useState<number | null>(null);
-
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
-  const toggleSecondaryExpand = (index: number) => {
-    setExpandedSecondaryIndex(expandedSecondaryIndex === index ? null : index);
-  };
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredSecondaryIndex, setHoveredSecondaryIndex] = useState<number | null>(null);
 
   return (
     <section
@@ -234,24 +332,25 @@ const Servicos = () => {
           </p>
         </div>
 
-        {/* Featured Services - Interactive Cards */}
+        {/* Featured Services - Hover to expand */}
         <div className="max-w-5xl mx-auto mb-24">
           <div className="space-y-6">
             {servicosDestaque.map((servico, index) => {
               const Icon = servico.icon;
-              const isExpanded = expandedIndex === index;
+              const isHovered = hoveredIndex === index;
               
               return (
                 <div
                   key={index}
                   id={servico.id}
                   className="group scroll-mt-24"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {/* Main Card */}
                   <div
-                    onClick={() => toggleExpand(index)}
-                    className={`bg-white border rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ${
-                      isExpanded 
+                    className={`bg-white border rounded-lg overflow-hidden transition-all duration-500 ${
+                      isHovered 
                         ? "border-teal shadow-lg" 
                         : "border-gray-100 shadow-subtle hover:shadow-card hover:border-teal/30"
                     }`}
@@ -261,12 +360,12 @@ const Servicos = () => {
                         {/* Icon */}
                         <div className="flex-shrink-0">
                           <div className={`w-16 h-16 rounded flex items-center justify-center transition-all duration-300 ${
-                            isExpanded 
+                            isHovered 
                               ? "bg-teal scale-110" 
                               : "bg-teal/10 group-hover:bg-teal group-hover:scale-105"
                           }`}>
                             <Icon className={`w-8 h-8 transition-colors duration-300 ${
-                              isExpanded ? "text-white" : "text-teal group-hover:text-white"
+                              isHovered ? "text-white" : "text-teal group-hover:text-white"
                             }`} />
                           </div>
                         </div>
@@ -274,7 +373,7 @@ const Servicos = () => {
                         {/* Content */}
                         <div className="flex-1">
                           <h3 className={`text-xl md:text-2xl font-semibold mb-3 transition-colors ${
-                            isExpanded ? "text-teal" : "text-charcoal group-hover:text-teal"
+                            isHovered ? "text-teal" : "text-charcoal group-hover:text-teal"
                           }`}>
                             {servico.title}
                           </h3>
@@ -288,7 +387,7 @@ const Servicos = () => {
                               <span 
                                 key={idx}
                                 className={`text-xs uppercase tracking-wider px-3 py-1.5 rounded transition-colors ${
-                                  isExpanded 
+                                  isHovered 
                                     ? "text-white bg-teal" 
                                     : "text-teal bg-teal/5"
                                 }`}
@@ -299,31 +398,24 @@ const Servicos = () => {
                           </div>
                         </div>
 
-                        {/* Arrow / Close */}
+                        {/* Arrow */}
                         <div className="hidden md:flex items-center">
-                          {isExpanded ? (
-                            <X className="w-6 h-6 text-teal transition-transform duration-300" />
-                          ) : (
-                            <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-teal group-hover:translate-x-1 transition-all duration-300" />
-                          )}
+                          <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
+                            isHovered ? "text-teal translate-x-1" : "text-gray-300"
+                          }`} />
                         </div>
                       </div>
                     </div>
                     
-                    {/* Expanded Content */}
+                    {/* Expanded Content with Image Slideshow */}
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+                      isHovered ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
                     }`}>
                       <div className="border-t border-gray-100">
                         <div className="grid md:grid-cols-2 gap-0">
-                          {/* Image */}
-                          <div className="relative h-64 md:h-80 overflow-hidden">
-                            <img 
-                              src={servico.image} 
-                              alt={servico.title}
-                              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+                          {/* Image Slideshow */}
+                          <div className="relative">
+                            <ImageSlideshow images={servico.images} isActive={isHovered} />
                             <div className="absolute bottom-6 left-6 right-6">
                               <h4 className="text-white text-xl font-semibold">
                                 {servico.detailedInfo.title}
@@ -367,89 +459,74 @@ const Servicos = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {servicos.map((servico, index) => {
               const Icon = servico.icon;
-              const isExpanded = expandedSecondaryIndex === index;
+              const isHovered = hoveredSecondaryIndex === index;
               
               return (
-                <div key={index} className="relative">
+                <div 
+                  key={index} 
+                  className="relative"
+                  onMouseEnter={() => setHoveredSecondaryIndex(index)}
+                  onMouseLeave={() => setHoveredSecondaryIndex(null)}
+                >
                   <div
-                    onClick={() => toggleSecondaryExpand(index)}
-                    className={`group bg-white border rounded p-5 cursor-pointer transition-all duration-300 ${
-                      isExpanded 
+                    className={`group bg-white border rounded overflow-hidden transition-all duration-300 ${
+                      isHovered 
                         ? "border-teal shadow-lg" 
                         : "border-gray-100 hover:border-teal/30 hover:shadow-card hover:-translate-y-1"
                     }`}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className={`w-10 h-10 rounded flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                        isExpanded 
-                          ? "bg-teal scale-110" 
-                          : "bg-gray-50 group-hover:bg-teal/10 group-hover:scale-110"
-                      }`}>
-                        <Icon className={`w-5 h-5 transition-colors ${
-                          isExpanded ? "text-white" : "text-gray-400 group-hover:text-teal"
-                        }`} />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className={`text-sm font-semibold mb-1 transition-colors ${
-                          isExpanded ? "text-teal" : "text-charcoal group-hover:text-teal"
+                    <div className="p-5">
+                      <div className="flex items-start gap-4">
+                        <div className={`w-10 h-10 rounded flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                          isHovered 
+                            ? "bg-teal scale-110" 
+                            : "bg-gray-50 group-hover:bg-teal/10 group-hover:scale-110"
                         }`}>
-                          {servico.title}
-                        </h4>
-                        <p className="text-xs text-gray-400 leading-relaxed">
-                          {servico.description}
-                        </p>
+                          <Icon className={`w-5 h-5 transition-colors ${
+                            isHovered ? "text-white" : "text-gray-400 group-hover:text-teal"
+                          }`} />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className={`text-sm font-semibold mb-1 transition-colors ${
+                            isHovered ? "text-teal" : "text-charcoal group-hover:text-teal"
+                          }`}>
+                            {servico.title}
+                          </h4>
+                          <p className="text-gray-400 text-xs leading-relaxed">
+                            {servico.description}
+                          </p>
+                        </div>
                       </div>
-                      <ArrowRight className={`w-4 h-4 flex-shrink-0 transition-all duration-300 ${
-                        isExpanded 
-                          ? "text-teal rotate-90" 
-                          : "text-gray-300 group-hover:text-teal group-hover:translate-x-1"
-                      }`} />
+                    </div>
+                    
+                    {/* Expanded Subcard with Image Slideshow */}
+                    <div className={`overflow-hidden transition-all duration-500 ${
+                      isHovered ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+                    }`}>
+                      <div className="border-t border-gray-100">
+                        {/* Image slideshow */}
+                        <ImageSlideshow images={servico.images} isActive={isHovered} />
+                        
+                        {/* Details */}
+                        <div className="p-4 bg-gray-50">
+                          <h5 className="text-xs uppercase tracking-wider text-teal font-medium mb-3">
+                            Benefícios
+                          </h5>
+                          <ul className="space-y-2 mb-4">
+                            {servico.detailedInfo.benefits.slice(0, 3).map((benefit, idx) => (
+                              <li key={idx} className="flex items-start gap-2 text-gray-600 text-xs">
+                                <span className="w-1 h-1 bg-teal rounded-full mt-1.5 flex-shrink-0" />
+                                {benefit}
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
+                            {servico.detailedInfo.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Expanded Subcard */}
-                  {isExpanded && (
-                    <div className="absolute top-full left-0 right-0 z-20 mt-2 bg-white rounded-lg shadow-xl border border-teal/20 overflow-hidden animate-fade-in">
-                      {/* Image */}
-                      <div className="relative h-40 overflow-hidden">
-                        <img 
-                          src={servico.image} 
-                          alt={servico.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent" />
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedSecondaryIndex(null);
-                          }}
-                          className="absolute top-2 right-2 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
-                        <div className="absolute bottom-3 left-4 right-4">
-                          <h5 className="text-white font-semibold text-sm">
-                            {servico.detailedInfo.title}
-                          </h5>
-                        </div>
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="p-4">
-                        <p className="text-xs text-gray-500 mb-3 leading-relaxed">
-                          {servico.detailedInfo.description}
-                        </p>
-                        <div className="space-y-1.5">
-                          {servico.detailedInfo.benefits.slice(0, 3).map((benefit, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
-                              <span className="w-1 h-1 bg-teal rounded-full flex-shrink-0" />
-                              {benefit}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               );
             })}

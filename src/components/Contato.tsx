@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contato = () => {
   const [formData, setFormData] = useState({
@@ -12,11 +13,50 @@ const Contato = () => {
     telefone: "",
     mensagem: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
-    setFormData({ nome: "", email: "", telefone: "", mensagem: "" });
+    
+    // Validate inputs
+    if (!formData.nome.trim() || !formData.email.trim() || !formData.mensagem.trim()) {
+      toast.error("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Por favor, insira um email válido.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          nome: formData.nome.trim(),
+          email: formData.email.trim(),
+          telefone: formData.telefone.trim() || undefined,
+          mensagem: formData.mensagem.trim(),
+        },
+      });
+
+      if (error) {
+        console.error("Error sending email:", error);
+        toast.error("Erro ao enviar mensagem. Tente novamente mais tarde.");
+        return;
+      }
+
+      toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
+      setFormData({ nome: "", email: "", telefone: "", mensagem: "" });
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Erro ao enviar mensagem. Tente novamente mais tarde.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -106,23 +146,25 @@ const Contato = () => {
               <Input
                 type="text"
                 name="nome"
-                placeholder="Nome"
+                placeholder="Nome *"
                 value={formData.nome}
                 onChange={handleChange}
                 required
+                disabled={isLoading}
                 className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal h-12 rounded"
+                  focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50"
               />
 
               <Input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email *"
                 value={formData.email}
                 onChange={handleChange}
                 required
+                disabled={isLoading}
                 className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal h-12 rounded"
+                  focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50"
               />
 
               <Input
@@ -131,26 +173,36 @@ const Contato = () => {
                 placeholder="Telefone"
                 value={formData.telefone}
                 onChange={handleChange}
+                disabled={isLoading}
                 className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal h-12 rounded"
+                  focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50"
               />
 
               <Textarea
                 name="mensagem"
-                placeholder="Mensagem"
+                placeholder="Mensagem *"
                 value={formData.mensagem}
                 onChange={handleChange}
                 required
+                disabled={isLoading}
                 rows={5}
                 className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal resize-none rounded"
+                  focus:border-teal focus:ring-teal resize-none rounded disabled:opacity-50"
               />
 
               <Button
                 type="submit"
-                className="w-full bg-teal hover:bg-teal/90 text-white font-medium text-base py-6 rounded"
+                disabled={isLoading}
+                className="w-full bg-teal hover:bg-teal/90 text-white font-medium text-base py-6 rounded disabled:opacity-50"
               >
-                Enviar Mensagem
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  "Enviar Mensagem"
+                )}
               </Button>
             </form>
           </div>

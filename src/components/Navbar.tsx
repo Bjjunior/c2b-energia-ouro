@@ -27,6 +27,8 @@ const Navbar = () => {
     { id: "inicio", label: "Início" },
     { id: "valores", label: "Valores" },
     { id: "servicos", label: "Serviços" },
+    { id: "portfolio", label: "Portfólio" },
+    { id: "voce-sabia", label: "Você Sabia?" },
     { id: "contato", label: "Contato" },
   ];
 
@@ -54,12 +56,12 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navLinks.slice(0, -1).map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`text-sm font-medium transition-colors duration-300 ${
+                className={`text-sm font-medium transition-colors duration-300 hover:scale-105 ${
                   scrolled 
                     ? 'text-gray-600 hover:text-teal' 
                     : 'text-gray-300 hover:text-white'
@@ -79,7 +81,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 ${scrolled ? 'text-gray-800' : 'text-white'}`}
+            className={`lg:hidden p-2 ${scrolled ? 'text-gray-800' : 'text-white'}`}
           >
             {mobileMenuOpen ? <X size={24} className="stroke-[2.5]" /> : <Menu size={24} className="stroke-[2.5]" />}
           </button>
@@ -87,7 +89,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 right-0 bg-white border-b border-gray-100 shadow-card">
+          <div className="lg:hidden absolute top-20 left-0 right-0 bg-white border-b border-gray-100 shadow-card animate-fade-in">
             <div className="px-6 py-4 space-y-4">
               {navLinks.map((link) => (
                 <button
