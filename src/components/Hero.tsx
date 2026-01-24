@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Sun, Car, Cpu } from "lucide-react";
+import { ChevronDown, Sun, Car, Cpu, Settings, FileText } from "lucide-react";
 import logoC2B from "@/assets/logo-c2b.png";
 
 // Background images for hero
@@ -53,6 +53,18 @@ const Hero = () => {
       icon: Cpu,
       title: "Automação",
       description: "Controle inteligente de sistemas"
+    },
+    {
+      id: "manutencao-industrial",
+      icon: Settings,
+      title: "Manutenção Industrial",
+      description: "Manutenção preventiva e corretiva"
+    },
+    {
+      id: "projetos",
+      icon: FileText,
+      title: "Projetos",
+      description: "Engenharia elétrica completa"
     }
   ];
 
@@ -105,19 +117,19 @@ const Hero = () => {
           </div>
 
           {/* Service Highlights with staggered animation */}
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 mb-16">
             {serviceHighlights.map((service, index) => {
               const Icon = service.icon;
               return (
                 <button
                   key={service.id}
                   onClick={() => scrollToService(service.id)}
-                  className="text-center p-6 border border-white/20 rounded-lg bg-white/[0.05] backdrop-blur-sm hover:bg-white/[0.12] hover:border-teal/50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 group cursor-pointer"
-                  style={{ animationDelay: `${index * 150}ms` }}
+                  className="text-center p-4 md:p-5 border border-white/20 rounded-lg bg-white/[0.05] backdrop-blur-sm hover:bg-white/[0.12] hover:border-teal/50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 group cursor-pointer"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <Icon className="w-10 h-10 text-teal mx-auto mb-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-500" />
-                  <h3 className="text-lg font-medium text-white mb-2 group-hover:text-teal transition-colors">{service.title}</h3>
-                  <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors">{service.description}</p>
+                  <Icon className="w-8 h-8 md:w-10 md:h-10 text-teal mx-auto mb-3 group-hover:scale-110 transition-all duration-500" />
+                  <h3 className="text-sm md:text-base font-medium text-white mb-1 group-hover:text-teal transition-colors">{service.title}</h3>
+                  <p className="text-gray-400 text-xs hidden md:block group-hover:text-gray-300 transition-colors">{service.description}</p>
                 </button>
               );
             })}
