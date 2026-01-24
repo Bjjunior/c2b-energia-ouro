@@ -59,20 +59,20 @@ const TecnicoSection = () => {
         }} />
       </div>
 
-      {/* Orange/Yellow accent lines */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500" />
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400" />
+      {/* Teal accent lines */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-teal" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-teal" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-orange-400 uppercase tracking-[0.2em] text-sm font-medium mb-3">
+          <p className="text-teal uppercase tracking-[0.2em] text-sm font-medium mb-3">
             Expertise Técnica
           </p>
           <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
-            Excelência em <span className="font-semibold text-amber-400">Engenharia Elétrica</span>
+            Excelência em <span className="font-semibold text-teal">Engenharia Elétrica</span>
           </h2>
-          <div className="w-16 h-[2px] bg-gradient-to-r from-orange-500 to-amber-400 mx-auto" />
+          <div className="w-16 h-[2px] bg-teal mx-auto" />
         </div>
 
         {/* Main Content - Image + Cards */}
@@ -97,8 +97,8 @@ const TecnicoSection = () => {
                   {/* Content overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-8">
                     <div className="flex items-center gap-3 mb-3">
-                      <item.icon className="w-8 h-8 text-amber-400" />
-                      <span className="text-orange-400 text-sm uppercase tracking-wider font-medium">
+                      <item.icon className="w-8 h-8 text-teal" />
+                      <span className="text-teal text-sm uppercase tracking-wider font-medium">
                         {item.subtitle}
                       </span>
                     </div>
@@ -114,7 +114,7 @@ const TecnicoSection = () => {
                       {item.stats.map((stat, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-orange-500/20 border border-orange-500/30 rounded text-orange-300 text-xs font-medium"
+                          className="px-3 py-1 bg-teal/20 border border-teal/30 rounded text-teal text-xs font-medium"
                         >
                           {stat}
                         </span>
@@ -132,7 +132,7 @@ const TecnicoSection = () => {
                     onClick={() => setCurrentIndex(index)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
                       index === currentIndex
-                        ? "bg-amber-400 w-8"
+                        ? "bg-teal w-8"
                         : "bg-white/30 w-4 hover:bg-white/50"
                     }`}
                   />
@@ -152,14 +152,14 @@ const TecnicoSection = () => {
                     onClick={() => setCurrentIndex(index)}
                     className={`text-left p-5 rounded-lg border transition-all duration-300 group ${
                       isActive
-                        ? "bg-gradient-to-br from-orange-500/20 to-amber-500/10 border-orange-500/50 shadow-lg shadow-orange-500/10"
-                        : "bg-white/5 border-white/10 hover:border-orange-500/30 hover:bg-white/10"
+                        ? "bg-teal/10 border-teal/50 shadow-lg shadow-teal/10"
+                        : "bg-white/5 border-white/10 hover:border-teal/30 hover:bg-white/10"
                     }`}
                   >
                     <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-all duration-300 ${
                       isActive
-                        ? "bg-gradient-to-br from-orange-500 to-amber-500"
-                        : "bg-gray-700 group-hover:bg-gradient-to-br group-hover:from-orange-500/50 group-hover:to-amber-500/50"
+                        ? "bg-teal"
+                        : "bg-gray-700 group-hover:bg-teal/50"
                     }`}>
                       <Icon className={`w-5 h-5 transition-colors ${
                         isActive ? "text-white" : "text-gray-400 group-hover:text-white"
@@ -167,7 +167,7 @@ const TecnicoSection = () => {
                     </div>
                     
                     <h4 className={`font-semibold mb-1 transition-colors ${
-                      isActive ? "text-amber-400" : "text-white group-hover:text-amber-400"
+                      isActive ? "text-teal" : "text-white group-hover:text-teal"
                     }`}>
                       {item.title}
                     </h4>
@@ -179,23 +179,6 @@ const TecnicoSection = () => {
               })}
             </div>
           </div>
-        </div>
-
-        {/* Bottom Stats */}
-        <div className="max-w-4xl mx-auto mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {[
-            { value: "500+", label: "Projetos Executados" },
-            { value: "15+", label: "Anos de Experiência" },
-            { value: "100%", label: "Conformidade NR-10" },
-            { value: "24/7", label: "Suporte Técnico" },
-          ].map((stat, index) => (
-            <div key={index} className="p-4">
-              <div className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1">
-                {stat.value}
-              </div>
-              <p className="text-gray-400 text-sm">{stat.label}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
