@@ -37,12 +37,6 @@ const Hero = () => {
 
   const serviceHighlights = [
     {
-      id: "energia-solar",
-      icon: Sun,
-      title: "Energia Solar",
-      description: "Sistemas fotovoltaicos de alta performance"
-    },
-    {
       id: "carregadores-ev",
       icon: Car,
       title: "Carregadores EV",
@@ -65,6 +59,12 @@ const Hero = () => {
       icon: FileText,
       title: "Projetos",
       description: "Engenharia elétrica completa"
+    },
+    {
+      id: "energia-solar",
+      icon: Sun,
+      title: "Energia Solar",
+      description: "Sistemas fotovoltaicos de alta performance"
     }
   ];
 
