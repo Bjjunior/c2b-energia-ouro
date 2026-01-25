@@ -14,23 +14,8 @@ import servicoManutencaoImg from "@/assets/servico-manutencao.jpg";
 import servicoInstalacoesImg from "@/assets/servico-instalacoes.jpg";
 import servicoIluminacaoImg from "@/assets/servico-iluminacao.jpg";
 
-// Serviços principais (destaque)
+// Serviços principais (destaque) - Energia Solar por último
 const servicosPrincipais = [
-  {
-    id: "energia-solar",
-    icon: Sun,
-    title: "Energia Solar",
-    shortDesc: "Sistemas fotovoltaicos de alta performance",
-    description: "Projetos completos de sistemas fotovoltaicos para residências, empresas e indústrias. Reduza até 95% da sua conta de energia com tecnologia de ponta e retorno garantido do investimento.",
-    features: ["Projeto personalizado", "Instalação certificada", "Monitoramento 24/7", "Garantia estendida"],
-    benefits: [
-      "Economia de até 95% na conta de energia",
-      "Retorno do investimento em 3-5 anos",
-      "Valorização do imóvel em até 8%",
-      "Vida útil de mais de 25 anos"
-    ],
-    image: servicoSolarImg,
-  },
   {
     id: "carregadores-ev",
     icon: Car,
@@ -90,6 +75,21 @@ const servicosPrincipais = [
       "Documentação técnica inclusa"
     ],
     image: servicoProjetosImg,
+  },
+  {
+    id: "energia-solar",
+    icon: Sun,
+    title: "Energia Solar",
+    shortDesc: "Sistemas fotovoltaicos de alta performance",
+    description: "Projetos completos de sistemas fotovoltaicos para residências, empresas e indústrias. Reduza até 95% da sua conta de energia com tecnologia de ponta e retorno garantido do investimento.",
+    features: ["Projeto personalizado", "Instalação certificada", "Monitoramento 24/7", "Garantia estendida"],
+    benefits: [
+      "Economia de até 95% na conta de energia",
+      "Retorno do investimento em 3-5 anos",
+      "Valorização do imóvel em até 8%",
+      "Vida útil de mais de 25 anos"
+    ],
+    image: servicoSolarImg,
   },
 ];
 
@@ -227,47 +227,10 @@ const Servicos = () => {
           </p>
         </div>
 
-        {/* Serviços Principais - Cards Grandes */}
+        {/* Serviços Principais - Cards Uniformes */}
         <div className="max-w-6xl mx-auto mb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Primeiro card grande (destaque) */}
-            <div className="sm:col-span-2 lg:col-span-2">
-              {(() => {
-                const servico = servicosPrincipais[0];
-                const Icon = servico.icon;
-                return (
-                  <button
-                    onClick={() => handleOpenModal(servico)}
-                    id={servico.id}
-                    className="w-full h-full text-left bg-white rounded-xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300 scroll-mt-24 group cursor-pointer"
-                  >
-                    <div className="relative h-64 md:h-80 overflow-hidden">
-                      <img
-                        src={servico.image}
-                        alt={servico.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-12 h-12 rounded-lg bg-teal flex items-center justify-center">
-                            <Icon className="w-6 h-6 text-white" />
-                          </div>
-                          <h3 className="text-2xl font-semibold text-white">{servico.title}</h3>
-                        </div>
-                        <p className="text-white/80 text-sm mb-3 max-w-md">{servico.shortDesc}</p>
-                        <span className="inline-flex items-center gap-2 text-teal text-sm font-medium bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                          Saiba mais <ChevronDown className="w-4 h-4" />
-                        </span>
-                      </div>
-                    </div>
-                  </button>
-                );
-              })()}
-            </div>
-
-            {/* Demais cards principais */}
-            {servicosPrincipais.slice(1).map((servico) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+            {servicosPrincipais.map((servico) => {
               const Icon = servico.icon;
               return (
                 <button
@@ -276,28 +239,26 @@ const Servicos = () => {
                   id={servico.id}
                   className="w-full text-left bg-white rounded-xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300 scroll-mt-24 group cursor-pointer"
                 >
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-40 overflow-hidden">
                     <img
                       src={servico.image}
                       alt={servico.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-10 h-10 rounded-lg bg-teal flex items-center justify-center">
-                          <Icon className="w-5 h-5 text-white" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-white">{servico.title}</h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <div className="w-9 h-9 rounded-lg bg-teal flex items-center justify-center mb-2">
+                        <Icon className="w-4 h-4 text-white" />
                       </div>
+                      <h3 className="text-sm font-semibold text-white leading-tight">{servico.title}</h3>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <p className="text-gray-500 text-sm leading-relaxed mb-3">
+                  <div className="p-3">
+                    <p className="text-gray-500 text-xs leading-relaxed mb-2 line-clamp-2">
                       {servico.shortDesc}
                     </p>
-                    <span className="inline-flex items-center gap-2 text-teal text-sm font-medium">
-                      Saiba mais <ChevronDown className="w-4 h-4" />
+                    <span className="inline-flex items-center gap-1 text-teal text-xs font-medium">
+                      Saiba mais <ChevronDown className="w-3 h-3" />
                     </span>
                   </div>
                 </button>
