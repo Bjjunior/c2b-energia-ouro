@@ -27,7 +27,7 @@ const Navbar = () => {
     { id: "inicio", label: "Início" },
     { id: "valores", label: "Valores" },
     { id: "servicos", label: "Serviços" },
-    { id: "portfolio", label: "Portfólio" },
+    
     { id: "voce-sabia", label: "Você Sabia?" },
     { id: "contato", label: "Contato" },
   ];
