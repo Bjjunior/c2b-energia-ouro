@@ -17,24 +17,18 @@ const Contato = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate inputs
     if (!formData.nome.trim() || !formData.email.trim() || !formData.mensagem.trim()) {
       toast.error("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
-
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast.error("Por favor, insira um email válido.");
       return;
     }
-
     setIsLoading(true);
-
     try {
-      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
         body: {
           nome: formData.nome.trim(),
           email: formData.email.trim(),
@@ -42,17 +36,13 @@ const Contato = () => {
           mensagem: formData.mensagem.trim(),
         },
       });
-
       if (error) {
-        console.error("Error sending email:", error);
         toast.error("Erro ao enviar mensagem. Tente novamente mais tarde.");
         return;
       }
-
       toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
       setFormData({ nome: "", email: "", telefone: "", mensagem: "" });
-    } catch (error) {
-      console.error("Error:", error);
+    } catch {
       toast.error("Erro ao enviar mensagem. Tente novamente mais tarde.");
     } finally {
       setIsLoading(false);
@@ -64,30 +54,14 @@ const Contato = () => {
   };
 
   const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "contato@c2bengenharia.com",
-      href: "mailto:contato@c2bengenharia.com",
-    },
-    {
-      icon: Phone,
-      label: "Telefone",
-      value: "+55 (11) 5196-1096",
-      href: "tel:+551151961096",
-    },
-    {
-      icon: MapPin,
-      label: "Localização",
-      value: "São Paulo, SP - Brasil",
-      href: null,
-    },
+    { icon: Mail, label: "Email", value: "contato@c2bengenharia.com", href: "mailto:contato@c2bengenharia.com" },
+    { icon: Phone, label: "Telefone", value: "+55 (11) 5196-1096", href: "tel:+551151961096" },
+    { icon: MapPin, label: "Localização", value: "São Paulo, SP - Brasil", href: null },
   ];
 
   return (
-    <section id="contato" className="py-24 md:py-32 bg-charcoal">
+    <section id="contato" className="py-24 md:py-32 bg-charcoal dark:bg-black transition-colors duration-500">
       <div className="container mx-auto px-6">
-        {/* Header */}
         <div className="text-center mb-20">
           <p className="text-teal uppercase tracking-[0.2em] text-sm font-medium mb-4">
             Fale Conosco
@@ -102,7 +76,6 @@ const Contato = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Info */}
           <div className="space-y-8">
             <div className="space-y-6">
               {contactInfo.map((item, index) => {
@@ -121,17 +94,13 @@ const Contato = () => {
                     )}
                   </div>
                 );
-
                 return item.href ? (
-                  <a key={index} href={item.href} className="block">
-                    {content}
-                  </a>
+                  <a key={index} href={item.href} className="block">{content}</a>
                 ) : (
                   <div key={index}>{content}</div>
                 );
               })}
             </div>
-
             <div className="p-6 border border-white/10 rounded">
               <p className="text-gray-400 text-sm leading-relaxed">
                 "Transformando energia em inteligência para o futuro do seu negócio. 
@@ -140,69 +109,19 @@ const Contato = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                type="text"
-                name="nome"
-                placeholder="Nome *"
-                value={formData.nome}
-                onChange={handleChange}
-                required
-                disabled={isLoading}
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50"
-              />
-
-              <Input
-                type="email"
-                name="email"
-                placeholder="Email *"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                disabled={isLoading}
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50"
-              />
-
-              <Input
-                type="tel"
-                name="telefone"
-                placeholder="Telefone"
-                value={formData.telefone}
-                onChange={handleChange}
-                disabled={isLoading}
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50"
-              />
-
-              <Textarea
-                name="mensagem"
-                placeholder="Mensagem *"
-                value={formData.mensagem}
-                onChange={handleChange}
-                required
-                disabled={isLoading}
-                rows={5}
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 
-                  focus:border-teal focus:ring-teal resize-none rounded disabled:opacity-50"
-              />
-
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-teal hover:bg-teal/90 text-white font-medium text-base py-6 rounded disabled:opacity-50"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Enviando...
-                  </>
-                ) : (
-                  "Enviar Mensagem"
-                )}
+              <Input type="text" name="nome" placeholder="Nome *" value={formData.nome} onChange={handleChange} required disabled={isLoading}
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50" />
+              <Input type="email" name="email" placeholder="Email *" value={formData.email} onChange={handleChange} required disabled={isLoading}
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50" />
+              <Input type="tel" name="telefone" placeholder="Telefone" value={formData.telefone} onChange={handleChange} disabled={isLoading}
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-teal focus:ring-teal h-12 rounded disabled:opacity-50" />
+              <Textarea name="mensagem" placeholder="Mensagem *" value={formData.mensagem} onChange={handleChange} required disabled={isLoading} rows={5}
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-teal focus:ring-teal resize-none rounded disabled:opacity-50" />
+              <Button type="submit" disabled={isLoading}
+                className="w-full bg-teal hover:bg-teal/90 text-white font-medium text-base py-6 rounded disabled:opacity-50">
+                {isLoading ? (<><Loader2 className="w-4 h-4 mr-2 animate-spin" />Enviando...</>) : "Enviar Mensagem"}
               </Button>
             </form>
           </div>
