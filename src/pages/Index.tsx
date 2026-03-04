@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import Valores from "@/components/Valores";
 import TecnicoSection from "@/components/TecnicoSection";
 import Servicos from "@/components/Servicos";
-
 import VoceSabia from "@/components/VoceSabia";
 import Contato from "@/components/Contato";
 import Footer from "@/components/Footer";
@@ -11,13 +10,12 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black dark:bg-black">
+    <div className="min-h-screen bg-black dark:bg-gray-950 transition-colors duration-500">
       <Navbar />
       <Hero />
       <Valores />
       <TecnicoSection />
       <Servicos />
-      
       <VoceSabia />
       <Contato />
       <Footer />

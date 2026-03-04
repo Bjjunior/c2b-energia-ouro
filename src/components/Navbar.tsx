@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logoC2B from "@/assets/logo-c2b.png";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -8,7 +8,6 @@ import ThemeToggle from "@/components/ThemeToggle";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [solucoesOpen, setSolucoesOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -35,17 +34,16 @@ const Navbar = () => {
     setMobileMenuOpen(false);
   };
 
-  const solucoes = [
-    { path: "/para-empresa", label: "Para sua Empresa" },
-    { path: "/para-condominio", label: "Para seu Condomínio" },
-    { path: "/para-voce", label: "Para Você" },
-  ];
-
   const navLinks = [
     { id: "inicio", label: "Início" },
     { id: "valores", label: "Valores" },
     { id: "servicos", label: "Serviços" },
-    { id: "voce-sabia", label: "Você Sabia?" },
+  ];
+
+  const solucoes = [
+    { path: "/para-empresa", label: "Para Empresas" },
+    { path: "/para-condominio", label: "Para Condomínios" },
+    { path: "/para-voce", label: "Para Você" },
   ];
 
   return (
@@ -72,7 +70,7 @@ const Navbar = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-5">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -87,31 +85,22 @@ const Navbar = () => {
               </button>
             ))}
 
-            {/* Soluções Dropdown */}
-            <div className="relative" onMouseEnter={() => setSolucoesOpen(true)} onMouseLeave={() => setSolucoesOpen(false)}>
+            {/* Direct links for solutions */}
+            {solucoes.map((s) => (
               <button
-                className={`text-sm font-medium transition-colors duration-300 hover:scale-105 flex items-center gap-1 ${
-                  scrolled
-                    ? 'text-gray-600 dark:text-gray-300 hover:text-teal'
-                    : 'text-gray-300 hover:text-white'
+                key={s.path}
+                onClick={() => navigate(s.path)}
+                className={`text-sm font-medium transition-colors duration-300 hover:scale-105 ${
+                  location.pathname === s.path
+                    ? 'text-teal'
+                    : scrolled
+                      ? 'text-gray-600 dark:text-gray-300 hover:text-teal'
+                      : 'text-gray-300 hover:text-white'
                 }`}
               >
-                Soluções <ChevronDown className="w-3 h-3" />
+                {s.label}
               </button>
-              {solucoesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-52 bg-white dark:bg-gray-900 rounded-lg shadow-elevated border border-gray-100 dark:border-white/10 py-2 animate-fade-in">
-                  {solucoes.map((s) => (
-                    <button
-                      key={s.path}
-                      onClick={() => { navigate(s.path); setSolucoesOpen(false); }}
-                      className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:text-teal hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            ))}
 
             <ThemeToggle />
 
@@ -154,7 +143,11 @@ const Navbar = () => {
                   <button
                     key={s.path}
                     onClick={() => { navigate(s.path); setMobileMenuOpen(false); }}
-                    className="block w-full text-left text-gray-600 dark:text-gray-300 hover:text-teal font-medium py-2"
+                    className={`block w-full text-left font-medium py-2 ${
+                      location.pathname === s.path
+                        ? 'text-teal'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-teal'
+                    }`}
                   >
                     {s.label}
                   </button>
