@@ -126,7 +126,13 @@ const CabinesPrimarias = () => {
 
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-white mb-6 leading-[1.05]">
             Cabines{" "}
-            <span className="font-semibold bg-gradient-to-r from-teal via-cyan-300 to-teal bg-clip-text text-transparent">
+            <span
+              className="font-semibold text-teal"
+              style={{
+                textShadow:
+                  "0 0 20px hsl(var(--teal) / 0.6), 0 0 40px hsl(var(--teal) / 0.3)",
+              }}
+            >
               Primárias
             </span>
           </h2>

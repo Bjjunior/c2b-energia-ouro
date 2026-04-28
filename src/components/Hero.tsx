@@ -6,17 +6,27 @@ import cabine1 from "@/assets/cabine-futurista-1.jpg";
 import cabine2 from "@/assets/cabine-futurista-2.jpg";
 import cabine3 from "@/assets/cabine-futurista-3.jpg";
 import cabine4 from "@/assets/cabine-futurista-4.jpg";
+import cabine5 from "@/assets/cabine-futurista-5.jpg";
+import cabine6 from "@/assets/cabine-futurista-6.jpg";
+import cabine7 from "@/assets/cabine-futurista-7.jpg";
+import cabine8 from "@/assets/cabine-futurista-8.jpg";
 import mosaico1 from "@/assets/mosaico-teal-1.jpg";
 import mosaico2 from "@/assets/mosaico-teal-2.jpg";
+import mosaico3 from "@/assets/mosaico-teal-3.jpg";
 
 // Background images for hero — futuristic cabines + premium teal mosaics
 const heroBackgrounds = [
   cabine1,
   mosaico1,
+  cabine5,
   cabine3,
   mosaico2,
+  cabine6,
   cabine2,
+  mosaico3,
+  cabine7,
   cabine4,
+  cabine8,
 ];
 
 const Hero = () => {

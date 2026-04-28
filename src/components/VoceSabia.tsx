@@ -1,28 +1,28 @@
 import { useEffect, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
 
-import voceSabia1 from "@/assets/voce-sabia-1.jpg";
-import voceSabia2 from "@/assets/voce-sabia-2.jpg";
-import voceSabia3 from "@/assets/voce-sabia-3.jpg";
-import voceSabia4 from "@/assets/voce-sabia-4.jpg";
-import voceSabia5 from "@/assets/voce-sabia-5.jpg";
+import cabine1 from "@/assets/cabine-futurista-1.jpg";
+import cabine2 from "@/assets/cabine-futurista-2.jpg";
+import cabine3 from "@/assets/cabine-futurista-3.jpg";
+import cabine4 from "@/assets/cabine-futurista-4.jpg";
+import cabine5 from "@/assets/cabine-futurista-5.jpg";
+import cabine6 from "@/assets/cabine-futurista-6.jpg";
+import cabine7 from "@/assets/cabine-futurista-7.jpg";
+import cabine8 from "@/assets/cabine-futurista-8.jpg";
 import voceSabia6 from "@/assets/voce-sabia-6.jpg";
 import voceSabia7 from "@/assets/voce-sabia-7.jpg";
-import voceSabia8 from "@/assets/voce-sabia-8.jpg";
-import voceSabia9 from "@/assets/voce-sabia-9.jpg";
-import voceSabia10 from "@/assets/voce-sabia-10.jpg";
 
 const curiosidades = [
-  { image: voceSabia1, title: "Eficiência Solar", fact: "Painéis solares modernos podem gerar energia mesmo em dias nublados, aproveitando até 25% da luz difusa." },
-  { image: voceSabia2, title: "Crescimento EV", fact: "O mercado de veículos elétricos no Brasil cresceu 91% em 2023, com mais de 90.000 unidades vendidas." },
-  { image: voceSabia3, title: "Automação Residencial", fact: "Casas inteligentes podem reduzir o consumo de energia em até 30% através de automação eficiente." },
-  { image: voceSabia4, title: "Potencial Solar Brasileiro", fact: "O Brasil recebe energia solar suficiente para gerar 30 vezes mais energia do que todo o consumo nacional." },
-  { image: voceSabia5, title: "Redução de Carbono", fact: "Um sistema solar residencial de 4kWp evita a emissão de aproximadamente 2 toneladas de CO2 por ano." },
-  { image: voceSabia6, title: "Iluminação LED", fact: "Lâmpadas LED consomem até 80% menos energia que incandescentes e duram 25 vezes mais." },
-  { image: voceSabia7, title: "Gestão de Energia", fact: "Indústrias que implementam gestão inteligente de energia economizam em média 20% nos custos operacionais." },
-  { image: voceSabia8, title: "Economia com EV", fact: "Abastecer um veículo elétrico custa até 70% menos que um veículo a combustão para a mesma distância." },
-  { image: voceSabia9, title: "Durabilidade Solar", fact: "Painéis solares têm vida útil de mais de 25 anos, mantendo mais de 80% da eficiência original." },
-  { image: voceSabia10, title: "Futuro Renovável", fact: "Até 2030, estima-se que 50% da energia global será proveniente de fontes renováveis." },
+  { image: cabine1, title: "Cabine Primária Energizada", fact: "Cerca de 70% das falhas em cabines primárias têm origem em manutenção inadequada — inspeções termográficas anuais reduzem esse risco em até 90%." },
+  { image: cabine6, title: "Vida Útil de Transformadores", fact: "Um transformador de potência bem mantido opera por mais de 30 anos. Sem manutenção preventiva, pode falhar em menos de 8." },
+  { image: cabine4, title: "Relés de Proteção Modernos", fact: "Relés digitais multifunção atuam em menos de 30 milissegundos, evitando danos catastróficos a equipamentos de alta tensão." },
+  { image: cabine7, title: "Indústria 4.0 e Energia", fact: "Plantas industriais com automação integrada e gestão inteligente de energia reduzem custos operacionais em até 35%." },
+  { image: cabine2, title: "Termografia Salva Vidas", fact: "Laudos termográficos detectam pontos quentes até 6 meses antes de uma falha real, evitando paradas e acidentes graves." },
+  { image: cabine3, title: "Seletividade de Proteções", fact: "Estudos de seletividade bem executados isolam apenas o circuito com defeito, mantendo até 95% da planta industrial em operação." },
+  { image: cabine8, title: "Automação Residencial Premium", fact: "Casas com automação integrada economizam até 30% em energia e valorizam o imóvel em até 20% no mercado." },
+  { image: cabine5, title: "Cabines Modernas e Seguras", fact: "Cabines primárias compactas com monitoramento remoto reduzem em 80% o tempo de resposta a emergências elétricas." },
+  { image: voceSabia7, title: "Custo de uma Parada Industrial", fact: "Uma hora parada em uma indústria de médio porte pode custar até R$ 500 mil — manutenção preventiva paga-se sozinha." },
+  { image: voceSabia6, title: "Conformidade NBR 14039", fact: "Cabines primárias devem ter manutenção formal anual com laudo técnico — exigência da concessionária e do Corpo de Bombeiros." },
 ];
 
 const VoceSabia = () => {
