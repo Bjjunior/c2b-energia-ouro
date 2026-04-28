@@ -202,7 +202,8 @@
   }
 
   .premium-card:hover {
-    @apply border-teal/60 -translate-y-2;
+    @apply -translate-y-2;
+    border-color: hsl(var(--teal) / 0.6);
     box-shadow: 0 20px 60px -15px hsl(var(--teal) / 0.5);
   }
 
