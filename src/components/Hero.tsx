@@ -2,13 +2,21 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Sun, Car, Cpu, Settings, FileText } from "lucide-react";
 import logoC2B from "@/assets/logo-c2b.png";
+import cabine1 from "@/assets/cabine-futurista-1.jpg";
+import cabine2 from "@/assets/cabine-futurista-2.jpg";
+import cabine3 from "@/assets/cabine-futurista-3.jpg";
+import cabine4 from "@/assets/cabine-futurista-4.jpg";
+import mosaico1 from "@/assets/mosaico-teal-1.jpg";
+import mosaico2 from "@/assets/mosaico-teal-2.jpg";
 
-// Background images for hero
+// Background images for hero — futuristic cabines + premium teal mosaics
 const heroBackgrounds = [
-  "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80", // Solar panels
-  "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1920&q=80", // EV charging
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80", // Industrial automation
-  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=80", // Power lines sunset
+  cabine1,
+  mosaico1,
+  cabine3,
+  mosaico2,
+  cabine2,
+  cabine4,
 ];
 
 const Hero = () => {
