@@ -11,7 +11,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black dark:bg-gray-950 transition-colors duration-500">
+    <div className="min-h-screen bg-black">
       <Navbar />
       <Hero />
       <CabinesPrimarias />

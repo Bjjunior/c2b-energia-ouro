@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun, Car, Cpu, Lightbulb, X, ChevronDown } from "lucide-react";
+import { Battery, Gauge, LineChart, Wrench, RefreshCw, Settings, Building2, Sun, Car, Cpu, Lightbulb, X, ChevronDown, Sparkles } from "lucide-react";
 
 import servicoSolarImg from "@/assets/servico-solar.jpg";
 import servicoEvImg from "@/assets/servico-ev.jpg";
@@ -79,16 +79,24 @@ const Servicos = () => {
   const handleCloseModal = () => setExpandedServico(null);
 
   return (
-    <section id="servicos" className="py-16 md:py-20 bg-gray-200 dark:bg-gray-900 transition-colors duration-500">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <p className="text-teal uppercase tracking-[0.2em] text-sm font-medium mb-3">Especialidades</p>
-          <h2 className="text-3xl md:text-4xl font-light text-charcoal dark:text-white mb-4">
-            Nossos <span className="font-semibold">Serviços</span>
+    <section id="servicos" className="premium-section py-24 md:py-32">
+      <div className="absolute inset-0 premium-glow-radial" />
+      <div className="absolute inset-0 premium-mosaic" />
+      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black to-transparent" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <div className="premium-eyebrow mb-8">
+            <Sparkles className="w-4 h-4" />
+            Especialidades
+          </div>
+          <h2 className="premium-title mb-2">
+            Nossos <span className="premium-accent">Serviços</span>
           </h2>
-          <div className="w-12 h-[2px] bg-teal mx-auto mb-4" />
-          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm">
-            Soluções completas em engenharia elétrica para empresas e indústrias
+          <div className="premium-divider" />
+          <p className="text-lg text-gray-400 font-light">
+            Soluções completas em engenharia elétrica para empresas e indústrias.
           </p>
         </div>
 
@@ -102,11 +110,11 @@ const Servicos = () => {
                   key={servico.id}
                   onClick={() => handleOpenModal(servico)}
                   id={servico.id}
-                  className="w-full text-left bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300 scroll-mt-24 group cursor-pointer"
+                  className="w-full text-left premium-card overflow-hidden scroll-mt-24 group cursor-pointer"
                 >
                   <div className="relative h-40 overflow-hidden">
                     <img src={servico.image} alt={servico.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3">
                       <div className="w-9 h-9 rounded-lg bg-teal flex items-center justify-center mb-2">
                         <Icon className="w-4 h-4 text-white" />
@@ -114,8 +122,8 @@ const Servicos = () => {
                       <h3 className="text-sm font-semibold text-white leading-tight">{servico.title}</h3>
                     </div>
                   </div>
-                  <div className="p-3">
-                    <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-2 line-clamp-2">{servico.shortDesc}</p>
+                  <div className="p-3 bg-black/40">
+                    <p className="text-gray-400 text-xs leading-relaxed mb-2 line-clamp-2">{servico.shortDesc}</p>
                     <span className="inline-flex items-center gap-1 text-teal text-xs font-medium">
                       Saiba mais <ChevronDown className="w-3 h-3" />
                     </span>
@@ -129,8 +137,8 @@ const Servicos = () => {
         {/* Também oferecemos */}
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <h3 className="text-xl font-light text-charcoal dark:text-white">
-              Também <span className="font-semibold">oferecemos</span>
+            <h3 className="text-2xl font-light text-white">
+              Também <span className="premium-accent">oferecemos</span>
             </h3>
             <div className="w-8 h-[2px] bg-teal mx-auto mt-3" />
           </div>
@@ -144,31 +152,31 @@ const Servicos = () => {
                   <button
                     onClick={() => handleOpenModal(servico)}
                     id={servico.id}
-                    className="w-full text-left bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300 scroll-mt-24 group cursor-pointer"
+                    className="w-full text-left premium-card overflow-hidden scroll-mt-24 group cursor-pointer"
                   >
                     <div className="relative h-24 overflow-hidden">
                       <img src={servico.image} alt={servico.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/30" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-10 h-10 rounded-lg bg-teal/90 flex items-center justify-center">
                           <Icon className="w-5 h-5 text-white" />
                         </div>
                       </div>
                     </div>
-                    <div className="p-3 text-center">
-                      <h4 className="text-xs font-semibold text-charcoal dark:text-white leading-tight">{servico.title}</h4>
+                    <div className="p-3 text-center bg-black/40">
+                      <h4 className="text-xs font-semibold text-white leading-tight">{servico.title}</h4>
                     </div>
                   </button>
 
                   {isHovered && (
-                    <div className="absolute z-40 left-1/2 -translate-x-1/2 top-full mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-elevated p-4 animate-fade-in pointer-events-none">
+                    <div className="absolute z-40 left-1/2 -translate-x-1/2 top-full mt-2 w-64 bg-gray-950 border border-teal/30 rounded-lg shadow-2xl shadow-teal/20 p-4 animate-fade-in pointer-events-none">
                       <div className="flex items-start gap-3 mb-3">
                         <div className="w-8 h-8 rounded-lg bg-teal flex items-center justify-center flex-shrink-0">
                           <Icon className="w-4 h-4 text-white" />
                         </div>
                         <div>
-                          <h4 className="text-sm font-semibold text-charcoal dark:text-white">{servico.title}</h4>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{servico.shortDesc}</p>
+                          <h4 className="text-sm font-semibold text-white">{servico.title}</h4>
+                          <p className="text-xs text-gray-400 mt-1">{servico.shortDesc}</p>
                         </div>
                       </div>
                       <div className="flex flex-wrap gap-1.5">
@@ -176,7 +184,7 @@ const Servicos = () => {
                           <span key={idx} className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full text-teal bg-teal/10 font-medium">{feature}</span>
                         ))}
                       </div>
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 rotate-45 shadow-sm" />
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-950 border-t border-l border-teal/30 rotate-45" />
                     </div>
                   )}
                 </div>
@@ -188,11 +196,11 @@ const Servicos = () => {
 
       {/* Modal */}
       {expandedServico && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-fade-in" onClick={handleCloseModal}>
-          <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-auto shadow-2xl animate-scale-in" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in" onClick={handleCloseModal}>
+          <div className="bg-gray-950 border border-teal/30 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-auto shadow-2xl shadow-teal/20 animate-scale-in" onClick={(e) => e.stopPropagation()}>
             <div className="relative h-48 md:h-64">
               <img src={expandedServico.image} alt={expandedServico.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-black/60 to-transparent" />
               <button onClick={handleCloseModal} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-colors">
                 <X className="w-5 h-5 text-white" />
               </button>
@@ -207,17 +215,17 @@ const Servicos = () => {
             </div>
             
             <div className="p-6 md:p-8">
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">{expandedServico.description}</p>
+              <p className="text-gray-300 leading-relaxed mb-6">{expandedServico.description}</p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {expandedServico.features.map((feature, idx) => (
                   <span key={idx} className="text-xs uppercase tracking-wider px-3 py-1.5 rounded-full text-teal bg-teal/10 font-medium">{feature}</span>
                 ))}
               </div>
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-5">
+              <div className="bg-black/60 border border-white/10 rounded-lg p-5">
                 <h4 className="text-sm uppercase tracking-wider text-teal font-semibold mb-4">Benefícios</h4>
                 <ul className="space-y-3">
                   {expandedServico.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-gray-600 dark:text-gray-300">
+                    <li key={idx} className="flex items-start gap-3 text-gray-300">
                       <span className="w-2 h-2 bg-teal rounded-full mt-1.5 flex-shrink-0" />
                       <span className="text-sm">{benefit}</span>
                     </li>
@@ -228,7 +236,7 @@ const Servicos = () => {
                 <a href="#contato" onClick={handleCloseModal} className="flex-1 bg-teal text-white text-center py-3 rounded-lg font-medium hover:bg-teal/90 transition-colors">
                   Solicitar Orçamento
                 </a>
-                <button onClick={handleCloseModal} className="px-6 py-3 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <button onClick={handleCloseModal} className="px-6 py-3 border border-white/20 rounded-lg text-gray-300 hover:bg-white/5 transition-colors">
                   Fechar
                 </button>
               </div>
