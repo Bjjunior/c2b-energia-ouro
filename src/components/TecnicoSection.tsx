@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Zap, FileText, BarChart3, AlertTriangle } from "lucide-react";
+import { Zap, FileText, BarChart3, AlertTriangle, Sparkles } from "lucide-react";
 
 const technicalItems = [
   {
@@ -39,30 +39,28 @@ const TecnicoSection = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-black dark:via-gray-950 dark:to-black relative overflow-hidden transition-colors duration-500">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M20 20h20v20H20V20zm0-20h20v20H20V0zM0 20h20v20H0V20z'/%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
-      <div className="absolute top-0 left-0 right-0 h-1 bg-teal" />
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-teal" />
+    <section className="premium-section py-24 md:py-32">
+      <div className="absolute inset-0 premium-glow-radial" />
+      <div className="absolute inset-0 premium-mosaic" />
+      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-12">
-          <p className="text-teal uppercase tracking-[0.2em] text-sm font-medium mb-3">Expertise Técnica</p>
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
-            Excelência em <span className="font-semibold text-teal">Engenharia Elétrica</span>
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <div className="premium-eyebrow mb-8">
+            <Sparkles className="w-4 h-4" />
+            Expertise Técnica
+          </div>
+          <h2 className="premium-title mb-2">
+            Excelência em <span className="premium-accent">Engenharia Elétrica</span>
           </h2>
-          <div className="w-16 h-[2px] bg-teal mx-auto" />
+          <div className="premium-divider" />
         </div>
 
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* Left - Image Display */}
-            <div className="relative h-[400px] md:h-[450px] rounded-xl overflow-hidden shadow-2xl">
+            <div className="relative h-[400px] md:h-[450px] rounded-xl overflow-hidden border border-teal/30 shadow-2xl shadow-teal/20">
               {technicalItems.map((item, index) => (
                 <div key={item.id} className={`absolute inset-0 transition-opacity duration-1000 ${index === currentIndex ? "opacity-100" : "opacity-0"}`}>
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
@@ -97,15 +95,15 @@ const TecnicoSection = () => {
                 const isActive = index === currentIndex;
                 return (
                   <button key={item.id} onClick={() => setCurrentIndex(index)}
-                    className={`text-left p-5 rounded-lg border transition-all duration-300 group ${
+                    className={`text-left p-5 rounded-lg border backdrop-blur-md transition-all duration-300 group ${
                       isActive
-                        ? "bg-teal/10 border-teal/50 shadow-lg shadow-teal/10"
-                        : "bg-white/5 border-white/10 hover:border-teal/30 hover:bg-white/10"
+                        ? "bg-teal/10 border-teal/60 shadow-lg shadow-teal/30"
+                        : "bg-white/[0.03] border-white/10 hover:border-teal/40 hover:bg-white/[0.06]"
                     }`}>
                     <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-all duration-300 ${
-                      isActive ? "bg-teal" : "bg-gray-700 group-hover:bg-teal/50"
+                      isActive ? "bg-teal" : "bg-teal/10 border border-teal/30 group-hover:bg-teal/40"
                     }`}>
-                      <Icon className={`w-5 h-5 transition-colors ${isActive ? "text-white" : "text-gray-400 group-hover:text-white"}`} />
+                      <Icon className={`w-5 h-5 transition-colors ${isActive ? "text-white" : "text-teal group-hover:text-white"}`} />
                     </div>
                     <h4 className={`font-semibold mb-1 transition-colors ${isActive ? "text-teal" : "text-white group-hover:text-teal"}`}>{item.title}</h4>
                     <p className="text-gray-400 text-sm line-clamp-2">{item.subtitle}</p>
