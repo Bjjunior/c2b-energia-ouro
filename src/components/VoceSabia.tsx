@@ -44,18 +44,23 @@ const VoceSabia = () => {
   }, [isPaused, goToNext]);
 
   return (
-    <section id="voce-sabia" className="py-24 md:py-32 bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
-      <div className="container mx-auto px-6">
+    <section id="voce-sabia" className="premium-section py-24 md:py-32">
+      <div className="absolute inset-0 premium-glow-radial" />
+      <div className="absolute inset-0 premium-mosaic" />
+      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black to-transparent" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 text-teal uppercase tracking-[0.2em] text-sm font-medium mb-4">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
+          <div className="premium-eyebrow mb-8">
             <Lightbulb className="w-4 h-4" />
             Curiosidades
           </div>
-          <h2 className="text-3xl md:text-4xl font-light text-charcoal dark:text-white mb-6">
-            Você <span className="font-semibold">Sabia?</span>
+          <h2 className="premium-title mb-2">
+            Você <span className="premium-accent">Sabia?</span>
           </h2>
-          <div className="w-12 h-[2px] bg-teal mx-auto" />
+          <div className="premium-divider" />
         </div>
 
         {/* Carousel */}
@@ -64,7 +69,7 @@ const VoceSabia = () => {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-lg">
+          <div className="relative overflow-hidden rounded-lg premium-card">
             <div className="grid md:grid-cols-2">
               <div className="relative h-64 md:h-80">
                 <img
@@ -72,17 +77,17 @@ const VoceSabia = () => {
                   alt={curiosidades[currentIndex].title}
                   className="w-full h-full object-cover transition-opacity duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 dark:to-gray-800/20 md:bg-gradient-to-l md:from-white/20 dark:md:from-gray-800/20 md:to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/60 md:bg-gradient-to-l md:from-black/60 md:to-transparent" />
               </div>
 
               <div className="p-8 flex flex-col justify-center">
                 <span className="text-teal text-sm uppercase tracking-wider font-medium mb-2">
                   {String(currentIndex + 1).padStart(2, '0')} / {String(curiosidades.length).padStart(2, '0')}
                 </span>
-                <h3 className="text-2xl font-semibold text-charcoal dark:text-white mb-4">
+                <h3 className="text-2xl font-semibold text-white mb-4">
                   {curiosidades[currentIndex].title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   {curiosidades[currentIndex].fact}
                 </p>
               </div>
@@ -91,13 +96,13 @@ const VoceSabia = () => {
 
           <button
             onClick={goToPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center text-charcoal dark:text-white hover:text-teal hover:scale-110 transition-all duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-12 h-12 bg-gray-950 border border-teal/30 rounded-full shadow-lg shadow-teal/20 flex items-center justify-center text-white hover:text-teal hover:bg-black hover:scale-110 transition-all duration-300"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center text-charcoal dark:text-white hover:text-teal hover:scale-110 transition-all duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-12 h-12 bg-gray-950 border border-teal/30 rounded-full shadow-lg shadow-teal/20 flex items-center justify-center text-white hover:text-teal hover:bg-black hover:scale-110 transition-all duration-300"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -107,10 +112,10 @@ const VoceSabia = () => {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`h-1 rounded-full transition-all duration-500 ${
                   index === currentIndex 
-                    ? "bg-teal w-6" 
-                    : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                    ? "bg-teal w-10" 
+                    : "bg-white/20 w-4 hover:bg-white/40"
                 }`}
               />
             ))}
