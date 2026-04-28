@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import CabinesPrimarias from "@/components/CabinesPrimarias";
 import Valores from "@/components/Valores";
 import TecnicoSection from "@/components/TecnicoSection";
 import Servicos from "@/components/Servicos";
@@ -13,6 +14,7 @@ const Index = () => {
     <div className="min-h-screen bg-black dark:bg-gray-950 transition-colors duration-500">
       <Navbar />
       <Hero />
+      <CabinesPrimarias />
       <Valores />
       <TecnicoSection />
       <Servicos />
