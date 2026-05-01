@@ -8,7 +8,9 @@ import ParaEmpresa from "./pages/ParaEmpresa";
 import ParaCondominio from "./pages/ParaCondominio";
 import ParaVoce from "./pages/ParaVoce";
 import Automacao from "./pages/Automacao";
+import CabinesPrimariasPage from "./pages/CabinesPrimariasPage";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -18,12 +20,14 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/para-empresa" element={<ParaEmpresa />} />
           <Route path="/para-condominio" element={<ParaCondominio />} />
           <Route path="/para-voce" element={<ParaVoce />} />
           <Route path="/automacao" element={<Automacao />} />
+          <Route path="/cabines-primarias" element={<CabinesPrimariasPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

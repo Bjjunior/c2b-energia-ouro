@@ -13,7 +13,7 @@ const PageHero = ({ title, highlight, subtitle, backgroundImage }: PageHeroProps
   const navigate = useNavigate();
 
   return (
-    <section className="premium-section relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+    <section className="premium-section relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32 pb-16">
       <div
         className="absolute inset-0 scale-105"
         style={{
@@ -26,15 +26,17 @@ const PageHero = ({ title, highlight, subtitle, backgroundImage }: PageHeroProps
       <div className="absolute inset-0 premium-glow-radial pointer-events-none" />
       <div className="absolute inset-0 premium-mosaic pointer-events-none" />
 
+      {/* Back button - top left, separated from title block */}
+      <button
+        onClick={() => navigate("/")}
+        className="absolute top-24 left-6 md:left-10 z-20 inline-flex items-center gap-2 text-gray-400 hover:text-teal transition-colors text-sm"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Voltar ao início
+      </button>
+
       <div className="relative z-10 container mx-auto px-6 text-center">
-        <button
-          onClick={() => navigate("/")}
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-teal mb-8 transition-colors text-sm"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Voltar ao início
-        </button>
-        <div className="premium-eyebrow mb-6">Soluções C2B</div>
+        <div className="premium-eyebrow mb-6 mx-auto">Soluções C2B</div>
         <h1 className="premium-title mb-2">
           {title} <span className="premium-accent">{highlight}</span>
         </h1>
