@@ -24,7 +24,7 @@ const ServiceCarousel = ({ items }: { items: CarouselItem[] }) => {
   }, [next]);
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden">
+    <div className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden border border-teal/20 shadow-2xl shadow-teal/20">
       <div className="relative h-[300px] md:h-[450px]">
         {items.map((item, index) => (
           <div
@@ -34,9 +34,11 @@ const ServiceCarousel = ({ items }: { items: CarouselItem[] }) => {
             }`}
           >
             <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8">
-              <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
+              <h3 className="text-2xl font-semibold text-white mb-2">
+                {item.title}
+              </h3>
               <p className="text-gray-300 text-sm md:text-base max-w-xl">{item.description}</p>
             </div>
           </div>
@@ -45,13 +47,13 @@ const ServiceCarousel = ({ items }: { items: CarouselItem[] }) => {
 
       <button
         onClick={prev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors"
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-teal border border-white/20 flex items-center justify-center text-white transition-colors"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
       <button
         onClick={next}
-        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white transition-colors"
+        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-teal border border-white/20 flex items-center justify-center text-white transition-colors"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
