@@ -78,19 +78,38 @@ const Navbar = () => {
             ))}
 
             {/* Direct links for solutions */}
-            {solucoes.map((s) => (
-              <button
-                key={s.path}
-                onClick={() => navigate(s.path)}
-                className={`text-sm font-medium transition-colors duration-300 hover:scale-105 ${
-                  location.pathname === s.path
-                    ? 'text-teal'
-                    : 'text-gray-300 hover:text-teal'
-                }`}
-              >
-                {s.label}
-              </button>
-            ))}
+            {solucoes.map((s) => {
+              const isAutomacao = s.path === "/automacao";
+              const isActive = location.pathname === s.path;
+              if (isAutomacao) {
+                return (
+                  <button
+                    key={s.path}
+                    onClick={() => navigate(s.path)}
+                    className={`relative text-sm font-semibold tracking-wide px-3 py-1.5 rounded-md border transition-all duration-300 hover:scale-105 ${
+                      isActive
+                        ? 'border-teal text-teal bg-teal/10 shadow-lg shadow-teal/30'
+                        : 'border-teal/40 text-teal hover:bg-teal/10 hover:border-teal'
+                    }`}
+                  >
+                    ✦ {s.label}
+                  </button>
+                );
+              }
+              return (
+                <button
+                  key={s.path}
+                  onClick={() => navigate(s.path)}
+                  className={`text-sm font-medium transition-colors duration-300 hover:scale-105 ${
+                    isActive
+                      ? 'text-teal'
+                      : 'text-gray-300 hover:text-teal'
+                  }`}
+                >
+                  {s.label}
+                </button>
+              );
+            })}
 
             <Button
               onClick={() => scrollToSection("contato")}
