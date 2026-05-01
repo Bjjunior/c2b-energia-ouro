@@ -43,6 +43,7 @@ const Navbar = () => {
     { path: "/para-empresa", label: "Para Empresas" },
     { path: "/para-condominio", label: "Para Condomínios" },
     { path: "/para-voce", label: "Para Você" },
+    { path: "/automacao", label: "Automação" },
   ];
 
   return (
