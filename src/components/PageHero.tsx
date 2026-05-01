@@ -13,30 +13,33 @@ const PageHero = ({ title, highlight, subtitle, backgroundImage }: PageHeroProps
   const navigate = useNavigate();
 
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <section className="premium-section relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 scale-105"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black" />
+      <div className="absolute inset-0 premium-glow-radial pointer-events-none" />
+      <div className="absolute inset-0 premium-mosaic pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-6 text-center">
         <button
           onClick={() => navigate("/")}
-          className="inline-flex items-center gap-2 text-gray-300 hover:text-white mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-teal mb-8 transition-colors text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           Voltar ao início
         </button>
-        <h1 className="text-4xl md:text-6xl font-light text-white mb-4">
-          {title} <span className="font-semibold text-teal">{highlight}</span>
+        <div className="premium-eyebrow mb-6">Soluções C2B</div>
+        <h1 className="premium-title mb-2">
+          {title} <span className="premium-accent">{highlight}</span>
         </h1>
-        <div className="w-16 h-[2px] bg-teal mx-auto my-6" />
-        <p className="text-xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
+        <div className="premium-divider" />
+        <p className="text-lg md:text-xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
           {subtitle}
         </p>
         <Button
@@ -44,7 +47,7 @@ const PageHero = ({ title, highlight, subtitle, backgroundImage }: PageHeroProps
             const el = document.getElementById("servicos-page");
             el?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="mt-8 bg-teal hover:bg-teal/90 text-white font-medium text-base px-10 py-6 rounded-lg"
+          className="mt-10 bg-teal hover:bg-teal/90 text-white font-medium text-base px-10 py-6 rounded-lg shadow-lg shadow-teal/40"
         >
           Conheça nossos serviços
         </Button>

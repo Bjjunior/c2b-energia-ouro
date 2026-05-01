@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import ParaEmpresa from "./pages/ParaEmpresa";
 import ParaCondominio from "./pages/ParaCondominio";
 import ParaVoce from "./pages/ParaVoce";
+import Automacao from "./pages/Automacao";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/para-empresa" element={<ParaEmpresa />} />
           <Route path="/para-condominio" element={<ParaCondominio />} />
           <Route path="/para-voce" element={<ParaVoce />} />
+          <Route path="/automacao" element={<Automacao />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
