@@ -84,7 +84,7 @@ const services = [
 
 const ParaCondominio = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-black">
       <Navbar />
       <PageHero
         title="Para seu"
@@ -93,28 +93,30 @@ const ParaCondominio = () => {
         backgroundImage={servicoInstalacoesImg}
       />
 
-      <section className="py-16 bg-gray-100 dark:bg-gray-950">
-        <div className="container mx-auto px-6">
+      <section className="premium-section py-20">
+        <div className="absolute inset-0 premium-glow-radial pointer-events-none" />
+        <div className="relative z-10 container mx-auto px-6">
           <div className="text-center mb-10">
-            <p className="text-teal uppercase tracking-[0.2em] text-sm font-medium mb-3">Destaques</p>
-            <h2 className="text-3xl font-light text-charcoal dark:text-white">
-              Soluções <span className="font-semibold">Condominiais</span>
+            <div className="premium-eyebrow mb-4">Destaques</div>
+            <h2 className="premium-title">
+              Soluções <span className="premium-accent">Condominiais</span>
             </h2>
-            <div className="w-12 h-[2px] bg-teal mx-auto mt-4" />
+            <div className="premium-divider" />
           </div>
           <ServiceCarousel items={carouselItems} />
         </div>
       </section>
 
-      <section id="servicos-page" className="py-16 bg-gray-200 dark:bg-gray-900">
-        <div className="container mx-auto px-6">
+      <section id="servicos-page" className="premium-section py-20">
+        <div className="absolute inset-0 premium-mosaic pointer-events-none" />
+        <div className="relative z-10 container mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-teal uppercase tracking-[0.2em] text-sm font-medium mb-3">Especialidades</p>
-            <h2 className="text-3xl font-light text-charcoal dark:text-white">
-              Serviços para <span className="font-semibold">Condomínios</span>
+            <div className="premium-eyebrow mb-4">Especialidades</div>
+            <h2 className="premium-title">
+              Serviços para <span className="premium-accent">Condomínios</span>
             </h2>
-            <div className="w-12 h-[2px] bg-teal mx-auto mt-4 mb-4" />
-            <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm">
+            <div className="premium-divider" />
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm">
               Infraestrutura elétrica segura e moderna para o seu condomínio
             </p>
           </div>
