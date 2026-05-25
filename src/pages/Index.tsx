@@ -1,11 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CabinesPrimarias from "@/components/CabinesPrimarias";
-import Valores from "@/components/Valores";
-import TecnicoSection from "@/components/TecnicoSection";
-import Servicos from "@/components/Servicos";
-import VoceSabia from "@/components/VoceSabia";
-import Contato from "@/components/Contato";
+import Emergencia24h from "@/components/Emergencia24h";
+import ContatoTriagem from "@/components/ContatoTriagem";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
@@ -15,11 +12,8 @@ const Index = () => {
       <Navbar />
       <Hero />
       <CabinesPrimarias />
-      <Valores />
-      <TecnicoSection />
-      <Servicos />
-      <VoceSabia />
-      <Contato />
+      <Emergencia24h />
+      <ContatoTriagem />
       <Footer />
       <WhatsAppButton />
     </div>
