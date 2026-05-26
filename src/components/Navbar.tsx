@@ -35,8 +35,7 @@ const Navbar = () => {
 
   const navLinks = [
     { id: "inicio", label: "Início" },
-    { id: "valores", label: "Valores" },
-    { id: "servicos", label: "Serviços" },
+    { id: "emergencia", label: "Emergência 24/7" },
   ];
 
   const solucoes = [
@@ -44,6 +43,8 @@ const Navbar = () => {
     { path: "/para-condominio", label: "Para Condomínios" },
     { path: "/para-voce", label: "Para Você" },
     { path: "/cabines-primarias", label: "Cabines Primárias" },
+    { path: "/manutencao-emergencial", label: "Manut. Emergencial" },
+    { path: "/laudos-e-projetos", label: "Laudos & Projetos" },
     { path: "/automacao", label: "Automação" },
   ];
 
