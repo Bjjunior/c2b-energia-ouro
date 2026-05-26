@@ -9,6 +9,8 @@ import ParaCondominio from "./pages/ParaCondominio";
 import ParaVoce from "./pages/ParaVoce";
 import Automacao from "./pages/Automacao";
 import CabinesPrimariasPage from "./pages/CabinesPrimariasPage";
+import ManutencaoEmergencial from "./pages/ManutencaoEmergencial";
+import LaudosProjetos from "./pages/LaudosProjetos";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/para-voce" element={<ParaVoce />} />
           <Route path="/automacao" element={<Automacao />} />
           <Route path="/cabines-primarias" element={<CabinesPrimariasPage />} />
+          <Route path="/manutencao-emergencial" element={<ManutencaoEmergencial />} />
+          <Route path="/laudos-e-projetos" element={<LaudosProjetos />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
