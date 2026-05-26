@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
-import ServicePageCard from "@/components/ServicePageCard";
 import AgendeCTA from "@/components/AgendeCTA";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -133,7 +132,7 @@ const ManutencaoEmergencial = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((s) => (
-              <ServicePageCard key={s.title} icon={s.icon} title={s.title} description={s.description} />
+              <FeatureCard key={s.title} icon={s.icon} title={s.title} description={s.description} />
             ))}
           </div>
         </div>
@@ -147,3 +146,21 @@ const ManutencaoEmergencial = () => {
 };
 
 export default ManutencaoEmergencial;
+
+const FeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}) => (
+  <div className="premium-card p-6 group">
+    <div className="w-12 h-12 bg-teal/10 border border-teal/30 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors duration-500">
+      <Icon className="w-5 h-5 text-teal group-hover:text-black transition-colors duration-500" />
+    </div>
+    <h3 className="text-white font-semibold mb-2">{title}</h3>
+    <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+  </div>
+);
