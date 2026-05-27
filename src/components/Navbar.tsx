@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logoC2B from "@/assets/logo-c2b.png";
 
 const Navbar = () => {
@@ -38,15 +44,21 @@ const Navbar = () => {
     { id: "emergencia", label: "Emergência 24/7" },
   ];
 
-  const solucoes = [
+  const especialidades = [
+    { path: "/cabines-primarias", label: "Cabines Primárias" },
+    { path: "/automacao", label: "Automação" },
+    { path: "/manutencao-emergencial", label: "Manutenção Emergencial" },
+    { path: "/laudos-e-projetos", label: "Laudos & Projetos" },
+  ];
+
+  const segmentos = [
     { path: "/para-empresa", label: "Para Empresas" },
     { path: "/para-condominio", label: "Para Condomínios" },
     { path: "/para-voce", label: "Para Você" },
-    { path: "/cabines-primarias", label: "Cabines Primárias" },
-    { path: "/manutencao-emergencial", label: "Manut. Emergencial" },
-    { path: "/laudos-e-projetos", label: "Laudos & Projetos" },
-    { path: "/automacao", label: "Automação" },
   ];
+
+  const allSolucoes = [...especialidades, ...segmentos];
+  const isSolucoesActive = allSolucoes.some((s) => s.path === location.pathname);
 
   return (
     <nav
@@ -68,7 +80,7 @@ const Navbar = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-5">
+          <div className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -79,26 +91,57 @@ const Navbar = () => {
               </button>
             ))}
 
-            {/* Direct links for solutions */}
-            {solucoes.map((s) => (
-              <button
-                key={s.path}
-                onClick={() => navigate(s.path)}
-                className={`text-sm font-medium transition-colors duration-300 hover:scale-105 ${
-                  location.pathname === s.path
-                    ? 'text-teal'
-                    : 'text-gray-300 hover:text-teal'
+            {/* Soluções dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={`inline-flex items-center gap-1 text-sm font-medium outline-none transition-colors duration-300 ${
+                  isSolucoesActive ? "text-teal" : "text-gray-300 hover:text-teal"
                 }`}
               >
-                {s.label}
-              </button>
-            ))}
+                Soluções
+                <ChevronDown className="w-4 h-4 opacity-70" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="w-72 bg-black/95 backdrop-blur-xl border border-teal/20 shadow-2xl shadow-teal/10 p-2"
+              >
+                <p className="px-2 pt-1 pb-2 text-[10px] uppercase tracking-wider text-gray-500">
+                  Especialidades
+                </p>
+                {especialidades.map((s) => (
+                  <DropdownMenuItem
+                    key={s.path}
+                    onClick={() => navigate(s.path)}
+                    className={`cursor-pointer rounded-md px-3 py-2 text-sm focus:bg-teal/10 ${
+                      location.pathname === s.path ? "text-teal" : "text-gray-200"
+                    }`}
+                  >
+                    {s.label}
+                  </DropdownMenuItem>
+                ))}
+                <div className="my-2 border-t border-white/10" />
+                <p className="px-2 pb-2 text-[10px] uppercase tracking-wider text-gray-500">
+                  Segmentos
+                </p>
+                {segmentos.map((s) => (
+                  <DropdownMenuItem
+                    key={s.path}
+                    onClick={() => navigate(s.path)}
+                    className={`cursor-pointer rounded-md px-3 py-2 text-sm focus:bg-teal/10 ${
+                      location.pathname === s.path ? "text-teal" : "text-gray-200"
+                    }`}
+                  >
+                    {s.label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             <Button
               onClick={() => scrollToSection("contato")}
               className="bg-teal hover:bg-teal/90 text-white font-medium text-sm px-6 rounded-lg shadow-lg shadow-teal/30"
             >
-              Contato
+              Orçamento
             </Button>
           </div>
 
@@ -127,8 +170,24 @@ const Navbar = () => {
                 </button>
               ))}
               <div className="border-t border-white/10 pt-3">
-                <p className="text-xs uppercase tracking-wider text-gray-400 mb-2">Soluções</p>
-                {solucoes.map((s) => (
+                <p className="text-xs uppercase tracking-wider text-gray-400 mb-2">Especialidades</p>
+                {especialidades.map((s) => (
+                  <button
+                    key={s.path}
+                    onClick={() => { navigate(s.path); setMobileMenuOpen(false); }}
+                    className={`block w-full text-left font-medium py-2 ${
+                      location.pathname === s.path
+                        ? 'text-teal'
+                        : 'text-gray-300 hover:text-teal'
+                    }`}
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+              <div className="border-t border-white/10 pt-3">
+                <p className="text-xs uppercase tracking-wider text-gray-400 mb-2">Segmentos</p>
+                {segmentos.map((s) => (
                   <button
                     key={s.path}
                     onClick={() => { navigate(s.path); setMobileMenuOpen(false); }}
@@ -146,7 +205,7 @@ const Navbar = () => {
                 onClick={() => scrollToSection("contato")}
                 className="block w-full text-left text-teal font-medium py-2"
               >
-                Contato
+                Orçamento
               </button>
             </div>
           </div>
