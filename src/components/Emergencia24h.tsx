@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, Phone, Clock, ShieldCheck, Zap } from "lucide-react";
+import { trackWhatsApp, trackCTA } from "@/lib/analytics";
 
 const Emergencia24h = () => {
   const whatsappUrl =
@@ -37,13 +38,18 @@ const Emergencia24h = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsApp("emergencia_24h", { emergencia: "sim" })}
+              >
                 <Button className="bg-teal hover:bg-teal/90 text-white font-medium text-base px-8 py-6 rounded-lg w-full sm:w-auto shadow-lg shadow-teal/40">
                   <Phone className="w-5 h-5 mr-2" />
                   Acionar Plantão Agora
                 </Button>
               </a>
-              <a href="/manutencao-emergencial">
+              <a href="/manutencao-emergencial" onClick={() => trackCTA("Saiba Mais", "emergencia_24h")}>
                 <Button
                   variant="outline"
                   className="border-teal/40 bg-transparent text-white hover:bg-teal/10 hover:text-teal font-medium text-base px-8 py-6 rounded-lg w-full sm:w-auto"

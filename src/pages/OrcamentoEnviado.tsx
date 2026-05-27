@@ -4,6 +4,8 @@ import { CheckCircle2, MessageCircle, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { trackEvent, trackConversion, trackWhatsApp } from "@/lib/analytics";
 
 const REDIRECT_SECONDS = 4;
 
@@ -25,31 +27,20 @@ const OrcamentoEnviado = () => {
       return;
     }
 
-    // Google Ads / GA4 conversion event
-    try {
-      // @ts-ignore
-      if (typeof window !== "undefined" && typeof window.gtag === "function") {
-        // @ts-ignore
-        window.gtag("event", "generate_lead", {
-          event_category: "orcamento",
-          event_label: state.especialidade ?? "n/a",
-          regiao: state.regiao,
-          emergencia: state.emergencia,
-        });
-      }
-      // @ts-ignore
-      if (typeof window !== "undefined" && Array.isArray(window.dataLayer)) {
-        // @ts-ignore
-        window.dataLayer.push({
-          event: "orcamento_enviado",
-          especialidade: state.especialidade,
-          regiao: state.regiao,
-          emergencia: state.emergencia,
-        });
-      }
-    } catch (_) {
-      // no-op
-    }
+    trackEvent("generate_lead", {
+      especialidade: state.especialidade,
+      regiao: state.regiao,
+      emergencia: state.emergencia,
+      value: state.emergencia === "sim" ? 500 : 250,
+      currency: "BRL",
+    });
+    trackEvent("orcamento_enviado", {
+      especialidade: state.especialidade,
+      regiao: state.regiao,
+      emergencia: state.emergencia,
+    });
+    // TODO: substituir AW-CONVERSION_ID/LABEL pelo conversion ID do Google Ads quando disponível
+    // trackConversion("AW-XXXXXXX/abcDEFghIJ", { value: 250, currency: "BRL" });
 
     const tick = setInterval(() => {
       setSeconds((s) => (s > 0 ? s - 1 : 0));
@@ -68,6 +59,11 @@ const OrcamentoEnviado = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
+      <SEO
+        title="Orçamento enviado | C2B Engenharia"
+        description="Sua solicitação foi registrada. Redirecionando ao WhatsApp para falar com um especialista C2B."
+        path="/orcamento-enviado"
+      />
       <Navbar />
       <main className="flex-1 flex items-center justify-center px-6 pt-28 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 premium-glow-radial" />
@@ -104,7 +100,12 @@ const OrcamentoEnviado = () => {
           )}
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={state.whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={state.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsApp("orcamento_enviado", { especialidade: state.especialidade })}
+            >
               <Button className="bg-teal hover:bg-teal/90 text-white font-medium px-6 py-6 rounded-lg shadow-lg shadow-teal/30 w-full sm:w-auto">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Abrir WhatsApp agora

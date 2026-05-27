@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Sun, Car, Cpu, Settings, FileText } from "lucide-react";
 import logoC2B from "@/assets/logo-c2b.png";
+import { useParallax } from "@/hooks/useParallax";
+import { trackCTA } from "@/lib/analytics";
 import cabine1 from "@/assets/cabine-futurista-1.jpg";
 import cabine2 from "@/assets/cabine-futurista-2.jpg";
 import cabine3 from "@/assets/cabine-futurista-3.jpg";
@@ -31,6 +33,7 @@ const heroBackgrounds = [
 
 const Hero = () => {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const parallaxRef = useParallax<HTMLDivElement>(0.25);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,16 +43,22 @@ const Hero = () => {
   }, []);
 
   const scrollToNext = () => {
+    trackCTA("Conheça Nossa Empresa", "hero");
     const element = document.getElementById("valores");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      document.getElementById("cabines-primarias")?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const scrollToService = (serviceId: string) => {
+    trackCTA(serviceId, "hero_highlight");
     const element = document.getElementById(serviceId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -91,20 +100,22 @@ const Hero = () => {
       id="inicio"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Images with Transition */}
-      {heroBackgrounds.map((bg, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
-            index === currentBgIndex ? "opacity-100" : "opacity-0"
-          }`}
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-      ))}
+      {/* Background Images with Parallax + Transition */}
+      <div ref={parallaxRef} className="absolute inset-0 will-change-transform" style={{ height: "120%" }}>
+        {heroBackgrounds.map((bg, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
+              index === currentBgIndex ? "opacity-100" : "opacity-0"
+            }`}
+            style={{
+              backgroundImage: `url(${bg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        ))}
+      </div>
       
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
