@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   MessageCircle,
@@ -34,6 +35,7 @@ const regioes: { id: Regiao; label: string }[] = [
 ];
 
 const ContatoTriagem = () => {
+  const navigate = useNavigate();
   const [especialidade, setEspecialidade] = useState<Especialidade | null>(null);
   const [regiao, setRegiao] = useState<Regiao | null>(null);
   const [emergencia, setEmergencia] = useState<Emergencia | null>(null);
@@ -52,6 +54,19 @@ const ContatoTriagem = () => {
   }, [espLabel, regLabel, emergencia]);
 
   const canSend = especialidade && regiao && emergencia;
+
+  const handleSubmit = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!canSend) return;
+    navigate("/orcamento-enviado", {
+      state: {
+        whatsappUrl,
+        especialidade: espLabel,
+        regiao: regLabel,
+        emergencia,
+      },
+    });
+  };
 
   return (
     <section id="contato" className="premium-section py-24 md:py-32">
@@ -151,23 +166,14 @@ const ContatoTriagem = () => {
 
           {/* Send */}
           <div className="pt-4 border-t border-white/10">
-            <a
-              href={canSend ? whatsappUrl : undefined}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                if (!canSend) e.preventDefault();
-              }}
-              className="block"
+            <Button
+              onClick={handleSubmit}
+              disabled={!canSend}
+              className="w-full bg-teal hover:bg-teal/90 text-white font-medium text-base py-6 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-teal/30"
             >
-              <Button
-                disabled={!canSend}
-                className="w-full bg-teal hover:bg-teal/90 text-white font-medium text-base py-6 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-teal/30"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                {canSend ? "Enviar para o WhatsApp" : "Responda as 3 perguntas acima"}
-              </Button>
-            </a>
+              <MessageCircle className="w-5 h-5 mr-2" />
+              {canSend ? "Solicitar orçamento via WhatsApp" : "Responda as 3 perguntas acima"}
+            </Button>
           </div>
         </div>
 
