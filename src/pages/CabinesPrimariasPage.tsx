@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SEO from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import ServicePageCard from "@/components/ServicePageCard";
@@ -134,6 +135,11 @@ const services = [
 const CabinesPrimariasPage = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Cabines Primárias | Manutenção, Termografia e Modernização | C2B"
+        description="Especialistas em cabines primárias e subestações de média tensão em SP: limpeza técnica, laudo termográfico, relés de proteção, NBR 14039, NR-10 SEP e manutenção preventiva."
+        path="/cabines-primarias"
+      />
       <Navbar />
       <PageHero
         title="Cabines"

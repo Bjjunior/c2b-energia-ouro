@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SEO from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import AgendeCTA from "@/components/AgendeCTA";
@@ -43,6 +44,11 @@ const services = [
 const LaudosProjetos = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Laudos Técnicos, Termografia e Projetos Elétricos NR-10 | C2B"
+        description="Laudos termográficos, projetos elétricos, ART, NR-10, SPDA e adequação à NBR 14039. Engenharia consultiva premium em São Paulo."
+        path="/laudos-e-projetos"
+      />
       <Navbar />
       <PageHero
         title="Laudos &"

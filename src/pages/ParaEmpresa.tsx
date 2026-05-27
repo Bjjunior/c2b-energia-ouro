@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SEO from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import ServicePageCard from "@/components/ServicePageCard";
@@ -109,6 +110,11 @@ const services = [
 const ParaEmpresa = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Soluções Elétricas para Empresas e Indústria | C2B"
+        description="Engenharia elétrica corporativa: cabines primárias, manutenção industrial, eficiência energética, automação e laudos técnicos para empresas em São Paulo."
+        path="/para-empresa"
+      />
       <Navbar />
       <PageHero
         title="Para sua"

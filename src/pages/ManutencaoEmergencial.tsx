@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SEO from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import AgendeCTA from "@/components/AgendeCTA";
@@ -51,6 +52,11 @@ const services = [
 const ManutencaoEmergencial = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Manutenção Elétrica Emergencial 24h em São Paulo | C2B"
+        description="Plantão técnico 24/7 para panes elétricas, cabines primárias, painéis e subestações. Equipe NR-10 a caminho em até 90 minutos na Grande SP e ABC."
+        path="/manutencao-emergencial"
+      />
       <Navbar />
       <PageHero
         title="Manutenção"

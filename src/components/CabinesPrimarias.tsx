@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useParallax } from "@/hooks/useParallax";
+import { trackCTA } from "@/lib/analytics";
 import {
   Flame,
   Sparkles,
@@ -66,6 +68,7 @@ const especialidades = [
 
 const CabinesPrimarias = () => {
   const [current, setCurrent] = useState(0);
+  const parallaxRef = useParallax<HTMLDivElement>(0.2);
 
   useEffect(() => {
     const id = setInterval(() => setCurrent((p) => (p + 1) % slides.length), 5000);
@@ -73,6 +76,7 @@ const CabinesPrimarias = () => {
   }, []);
 
   const scrollToContact = () => {
+    trackCTA("Avaliação Premium", "cabines_primarias");
     const el = document.getElementById("contato");
     el?.scrollIntoView({ behavior: "smooth" });
   };
@@ -82,20 +86,22 @@ const CabinesPrimarias = () => {
       id="cabines-primarias"
       className="relative py-24 md:py-32 overflow-hidden bg-black transition-colors duration-500"
     >
-      {/* Background carousel */}
-      {slides.map((src, i) => (
-        <div
-          key={i}
-          className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
-            i === current ? "opacity-100" : "opacity-0"
-          }`}
-          style={{
-            backgroundImage: `url(${src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-      ))}
+      {/* Background carousel with parallax */}
+      <div ref={parallaxRef} className="absolute inset-0 will-change-transform" style={{ height: "120%" }}>
+        {slides.map((src, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
+              i === current ? "opacity-100" : "opacity-0"
+            }`}
+            style={{
+              backgroundImage: `url(${src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        ))}
+      </div>
 
       {/* Premium dark overlay with teal gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-black/85 to-black/95" />

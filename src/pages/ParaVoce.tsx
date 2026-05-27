@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SEO from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import ServicePageCard from "@/components/ServicePageCard";
@@ -80,6 +81,11 @@ const services = [
 const ParaVoce = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Automação e Elétrica Residencial Premium | C2B"
+        description="Soluções elétricas residenciais premium: automação, energia solar, carregadores EV e projetos personalizados para sua casa."
+        path="/para-voce"
+      />
       <Navbar />
       <PageHero
         title="Para"

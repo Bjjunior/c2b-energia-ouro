@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SEO from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import ServicePageCard from "@/components/ServicePageCard";
@@ -85,6 +86,11 @@ const services = [
 const ParaCondominio = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Engenharia Elétrica para Condomínios em SP | C2B"
+        description="Manutenção elétrica preventiva, cabines primárias, carregadores EV, automação e laudos para condomínios residenciais e comerciais em São Paulo."
+        path="/para-condominio"
+      />
       <Navbar />
       <PageHero
         title="Para seu"

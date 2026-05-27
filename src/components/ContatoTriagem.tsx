@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 import {
   MessageCircle,
   Zap,
@@ -58,6 +59,11 @@ const ContatoTriagem = () => {
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!canSend) return;
+    trackEvent("triagem_submit", {
+      especialidade: espLabel,
+      regiao: regLabel,
+      emergencia,
+    });
     navigate("/orcamento-enviado", {
       state: {
         whatsappUrl,
@@ -99,7 +105,7 @@ const ContatoTriagem = () => {
                 return (
                   <button
                     key={e.id}
-                    onClick={() => setEspecialidade(e.id)}
+                    onClick={() => { setEspecialidade(e.id); trackEvent("triagem_step", { step: 1, value: e.label }); }}
                     className={`group p-4 rounded-lg border text-left transition-all duration-300 ${
                       active
                         ? "border-teal bg-teal/10 shadow-lg shadow-teal/20"
@@ -124,7 +130,7 @@ const ContatoTriagem = () => {
                 return (
                   <button
                     key={r.id}
-                    onClick={() => setRegiao(r.id)}
+                    onClick={() => { setRegiao(r.id); trackEvent("triagem_step", { step: 2, value: r.label }); }}
                     className={`p-4 rounded-lg border text-left transition-all duration-300 flex items-center gap-2 ${
                       active
                         ? "border-teal bg-teal/10 shadow-lg shadow-teal/20"
@@ -148,7 +154,7 @@ const ContatoTriagem = () => {
                 return (
                   <button
                     key={opt}
-                    onClick={() => setEmergencia(opt)}
+                    onClick={() => { setEmergencia(opt); trackEvent("triagem_step", { step: 3, value: opt }); }}
                     className={`p-4 rounded-lg border font-medium transition-all duration-300 ${
                       active
                         ? opt === "sim"

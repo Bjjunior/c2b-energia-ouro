@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SEO from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import ServicePageCard from "@/components/ServicePageCard";
@@ -135,6 +136,11 @@ const services = [
 const Automacao = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Automação Residencial High-End em São Paulo | C2B"
+        description="Automação residencial e predial premium: iluminação cênica, climatização, cortinas, multimídia e segurança integrada. Soluções high-end para arquitetos e usuários finais."
+        path="/automacao"
+      />
       <Navbar />
       <PageHero
         title="Automação"
