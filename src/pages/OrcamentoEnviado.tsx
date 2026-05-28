@@ -39,8 +39,10 @@ const OrcamentoEnviado = () => {
       regiao: state.regiao,
       emergencia: state.emergencia,
     });
-    // TODO: substituir AW-CONVERSION_ID/LABEL pelo conversion ID do Google Ads quando disponível
-    // trackConversion("AW-XXXXXXX/abcDEFghIJ", { value: 250, currency: "BRL" });
+    trackConversion("AW-18140119727/-YjuCM_Y2b0aEOOq19Up", {
+      value: state.emergencia === "sim" ? 500 : 250,
+      currency: "BRL",
+    });
 
     const tick = setInterval(() => {
       setSeconds((s) => (s > 0 ? s - 1 : 0));
