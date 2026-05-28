@@ -77,13 +77,15 @@
       }
     </script>
 
-    <!-- Google Tag Manager / GA4 / Google Ads — IDs preenchidos em window.__C2B_TAGS__ -->
+    <!-- Google Tag Manager / GA4 / Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-63D6KE4RNM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);} window.gtag = gtag;
+      function gtag(){window.dataLayer.push(arguments);}
+      window.gtag = gtag;
       gtag('js', new Date());
-      // TODO: substituir GA_MEASUREMENT_ID e AW-CONVERSION_ID quando o cliente fornecer
-      // gtag('config', 'G-XXXXXXXXXX');
+      gtag('config', 'G-63D6KE4RNM', { send_page_view: true });
+      // Google Ads — substituir quando o cliente fornecer
       // gtag('config', 'AW-XXXXXXXXX');
     </script>
   </head>
