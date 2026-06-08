@@ -88,7 +88,7 @@ const ParaCondominio = () => {
     <div className="min-h-screen bg-black">
       <SEO
         title="Engenharia Elétrica para Condomínios em SP | C2B"
-        description="Manutenção elétrica preventiva, cabines primárias, carregadores EV, automação e laudos para condomínios residenciais e comerciais em São Paulo."
+        description="Manutenção elétrica preventiva, cabines primárias, carregadores EV e laudos para condomínios residenciais e comerciais em São Paulo."
         path="/para-condominio"
       />
       <Navbar />
