@@ -6,24 +6,22 @@ import {
   MessageCircle,
   Zap,
   AlertTriangle,
-  Cpu,
+  Car,
   FileCheck,
   Wrench,
   MapPin,
   Phone,
   Instagram,
-  Mail,
-  Check,
 } from "lucide-react";
 
-type Especialidade = "cabines" | "emergencia" | "automacao" | "laudos" | "manutencao";
+type Especialidade = "cabines" | "emergencia" | "carregadores" | "laudos" | "manutencao";
 type Regiao = "capital" | "abc" | "litoral" | "interior";
 type Emergencia = "sim" | "nao";
 
 const especialidades: { id: Especialidade; label: string; icon: React.ElementType; desc: string }[] = [
   { id: "cabines", label: "Cabines Primárias", icon: Zap, desc: "Subestações & média tensão" },
   { id: "emergencia", label: "Emergência", icon: AlertTriangle, desc: "Pane elétrica agora" },
-  { id: "automacao", label: "Automação", icon: Cpu, desc: "Residencial e predial" },
+  { id: "carregadores", label: "Carregadores EV", icon: Car, desc: "Wallbox e instalação premium" },
   { id: "laudos", label: "Laudos & Projetos", icon: FileCheck, desc: "Termografia, NR-10, ART" },
   { id: "manutencao", label: "Manutenção", icon: Wrench, desc: "Preventiva e preditiva" },
 ];

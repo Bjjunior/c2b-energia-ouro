@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Sun, Car, Cpu, Settings, FileText } from "lucide-react";
+import { ChevronDown, Zap, Car, AlertTriangle, Settings, FileText } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import logoC2B from "@/assets/logo-c2b.png";
 import { useParallax } from "@/hooks/useParallax";
 import { trackCTA } from "@/lib/analytics";
@@ -34,6 +35,7 @@ const heroBackgrounds = [
 const Hero = () => {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const parallaxRef = useParallax<HTMLDivElement>(0.25);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,48 +54,19 @@ const Hero = () => {
     }
   };
 
-  const scrollToService = (serviceId: string) => {
-    trackCTA(serviceId, "hero_highlight");
-    const element = document.getElementById(serviceId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    } else {
-      document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const serviceHighlights = [
-    {
-      id: "carregadores-ev",
-      icon: Car,
-      title: "Carregadores EV",
-      description: "Infraestrutura para mobilidade elétrica"
-    },
-    {
-      id: "automacao",
-      icon: Cpu,
-      title: "Automação",
-      description: "Controle inteligente de sistemas"
-    },
-    {
-      id: "manutencao-industrial",
-      icon: Settings,
-      title: "Manutenção Industrial",
-      description: "Manutenção preventiva e corretiva"
-    },
-    {
-      id: "projetos",
-      icon: FileText,
-      title: "Projetos",
-      description: "Engenharia elétrica completa"
-    },
-    {
-      id: "energia-solar",
-      icon: Sun,
-      title: "Energia Solar",
-      description: "Sistemas fotovoltaicos de alta performance"
-    }
+  const serviceHighlights: { id: string; icon: any; title: string; description: string; route?: string; scrollTo?: string }[] = [
+    { id: "cabines-primarias", icon: Zap, title: "Cabines Primárias", description: "Subestações e média tensão", route: "/cabines-primarias" },
+    { id: "carregadores-ev", icon: Car, title: "Carregadores EV", description: "Wallbox premium para sua garagem", route: "/carregadores-eletricos" },
+    { id: "emergencia-24h", icon: AlertTriangle, title: "Emergência 24/7", description: "Plantão técnico imediato", scrollTo: "emergencia" },
+    { id: "manutencao", icon: Settings, title: "Manutenção", description: "Preventiva, corretiva e preditiva", route: "/manutencao-emergencial" },
+    { id: "laudos-projetos", icon: FileText, title: "Laudos & Projetos", description: "Termografia, NR-10 e ART", route: "/laudos-e-projetos" },
   ];
+
+  const goToService = (s: { id: string; route?: string; scrollTo?: string }) => {
+    trackCTA(s.id, "hero_highlight");
+    if (s.route) { navigate(s.route); return; }
+    document.getElementById(s.scrollTo || s.id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
@@ -152,7 +125,7 @@ const Hero = () => {
               return (
                 <button
                   key={service.id}
-                  onClick={() => scrollToService(service.id)}
+                  onClick={() => goToService(service)}
                   className="text-center p-4 md:p-5 border border-white/20 rounded-lg bg-white/[0.05] backdrop-blur-sm hover:bg-white/[0.12] hover:border-teal/50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >

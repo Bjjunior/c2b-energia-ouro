@@ -46,7 +46,7 @@ const Navbar = () => {
 
   const especialidades = [
     { path: "/cabines-primarias", label: "Cabines Primárias" },
-    { path: "/automacao", label: "Automação" },
+    { path: "/carregadores-eletricos", label: "Carregadores Elétricos" },
     { path: "/manutencao-emergencial", label: "Manutenção Emergencial" },
     { path: "/laudos-e-projetos", label: "Laudos & Projetos" },
   ];
@@ -54,7 +54,6 @@ const Navbar = () => {
   const segmentos = [
     { path: "/para-empresa", label: "Para Empresas" },
     { path: "/para-condominio", label: "Para Condomínios" },
-    { path: "/para-voce", label: "Para Você" },
   ];
 
   const allSolucoes = [...especialidades, ...segmentos];

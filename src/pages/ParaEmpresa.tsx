@@ -6,17 +6,17 @@ import ServicePageCard from "@/components/ServicePageCard";
 import AgendeCTA from "@/components/AgendeCTA";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { Settings, Wrench, Cpu, Battery, RefreshCw, Building2, Lightbulb, Gauge, LineChart } from "lucide-react";
+import { Settings, Wrench, Battery, RefreshCw, Building2, Lightbulb, Gauge, LineChart, Car } from "lucide-react";
 
 import servicoManutencaoImg from "@/assets/servico-manutencao.jpg";
 import servicoProjetosImg from "@/assets/servico-projetos.jpg";
-import servicoAutomacaoImg from "@/assets/servico-automacao.jpg";
 import servicoEficienciaImg from "@/assets/servico-eficiencia.jpg";
 import servicoRetrofitImg from "@/assets/servico-retrofit.jpg";
 import servicoInstalacoesImg from "@/assets/servico-instalacoes.jpg";
 import servicoIluminacaoImg from "@/assets/servico-iluminacao.jpg";
 import servicoDemandaImg from "@/assets/servico-demanda.jpg";
 import servicoQualidadeImg from "@/assets/servico-qualidade.jpg";
+import servicoEvImg from "@/assets/servico-ev.jpg";
 
 const carouselItems = [
   {
@@ -30,9 +30,9 @@ const carouselItems = [
     description: "Desenvolvimento completo conforme ABNT e NR-10 para indústrias e grandes empreendimentos.",
   },
   {
-    image: servicoAutomacaoImg,
-    title: "Automação de Processos",
-    description: "Automação industrial com controle inteligente de sistemas para máxima eficiência operacional.",
+    image: servicoEvImg,
+    title: "Carregadores Elétricos Corporativos",
+    description: "Estações de recarga para frotas e colaboradores, com gestão de consumo e infraestrutura dedicada.",
   },
   {
     image: servicoEficienciaImg,
@@ -57,11 +57,11 @@ const services = [
     image: servicoProjetosImg,
   },
   {
-    icon: Cpu,
-    title: "Automação Industrial",
-    description: "Sistemas de automação para processos industriais com controle inteligente, CLPs, IHMs e integração de sistemas SCADA.",
-    features: ["CLP", "SCADA", "IHM", "Integração", "Indústria 4.0"],
-    image: servicoAutomacaoImg,
+    icon: Car,
+    title: "Carregadores para Frotas",
+    description: "Infraestrutura de recarga corporativa para frotas elétricas e colaboradores, com gestão de demanda e medição individual.",
+    features: ["AC/DC", "Gestão", "Frotas", "Medição"],
+    image: servicoEvImg,
   },
   {
     icon: Battery,
@@ -112,14 +112,14 @@ const ParaEmpresa = () => {
     <div className="min-h-screen bg-black">
       <SEO
         title="Soluções Elétricas para Empresas e Indústria | C2B"
-        description="Engenharia elétrica corporativa: cabines primárias, manutenção industrial, eficiência energética, automação e laudos técnicos para empresas em São Paulo."
+        description="Engenharia elétrica corporativa: cabines primárias, manutenção industrial, eficiência energética, carregadores EV e laudos técnicos para empresas em São Paulo."
         path="/para-empresa"
       />
       <Navbar />
       <PageHero
         title="Para sua"
         highlight="Empresa"
-        subtitle="Soluções completas em engenharia elétrica industrial. Manutenção, projetos, automação e eficiência energética para sua operação."
+        subtitle="Soluções completas em engenharia elétrica industrial. Manutenção, projetos, carregadores EV e eficiência energética para sua operação."
         backgroundImage={servicoManutencaoImg}
       />
 
